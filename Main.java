@@ -1,5 +1,9 @@
 class Main {
+  /**
+   * @param args
+   */
   public static void main(String[] args) {
-    System.out.println("Hello world!");
+   teste a = new teste("aasd");
+   System.out.println(a.getName());
   }
 }
