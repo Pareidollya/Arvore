@@ -1,7 +1,7 @@
 iteração 
 
 funções de arvore
-    > imprimir arvore, ver num elementos, ver num folhas, ir para raiz, ir para nó x (navegar entre nós) e converter para binária. 
+- imprimir arvore, ver num elementos, ver num folhas, ir para raiz, ir para nó x (navegar entre nós) e converter para binária. 
 
 funções de nó
     - retornar valor, retornar pai, retornar filhos e pai (para navegação em arvore), adicionar filho, remover filho.
