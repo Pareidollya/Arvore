@@ -18,4 +18,4 @@ impressão (percurso na arvore)
 (elaborar função de encaminhamento e utilizar os prints da propira função de nó)
     
 converter generica -> binária:
-- caso em uso total de array: a partir do nó raiz limitar o array de filhos em 2 index, em seguida realizar o encaminhamento para percorrer os array de filhos e reduzi-los em 2 index recursivamente.
+- caso em uso total de array: a partir do nó raiz limitar o array de filhos em 2 index, em seguida realizar o encaminhamento para percorrer os array de filhos e reduzi-los em 2 index recursivamente. Caso usar variáveis de esquerda e direita: atribuir o filho de index 0 a esquerda e filho de index 1 a direita.
