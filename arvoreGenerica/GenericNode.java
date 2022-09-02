@@ -2,7 +2,7 @@ package arvoreGenerica;
 import java.util.ArrayList;
 
 public class GenericNode<T> {
-    private int altura;
+    private int profundidade;
     private T valor;
     private GenericNode<T> pai;
     private ArrayList<GenericNode<T>> filhos;
@@ -10,26 +10,26 @@ public class GenericNode<T> {
 
     //declarar raiz
     public GenericNode(T valor) { 
-        this.altura = 0;
         this.valor = valor;
         this.pai = null;
+        this.profundidade = 0;
 
         this.filhos = new ArrayList<>();
         
     }
 
     //declarar um filho
-    public GenericNode(int altura, T valor, GenericNode<T> pai) { 
-        this.altura = altura;
+    public GenericNode(int profundidade, T valor, GenericNode<T> pai) { 
+        this.profundidade = profundidade + 1;
         this.valor = valor;
         this.pai = pai;
 
         this.filhos = new ArrayList<>();
     } 
 
-    //declarar com filhos (passar com uma lista de nós ja encadeados)
-    public GenericNode(int altura, T valor, GenericNode<T> pai, ArrayList<GenericNode<T>> filhos) { 
-        this.altura = altura;
+    //declarar sub árvore
+    public GenericNode(int profundidade, T valor, GenericNode<T> pai, ArrayList<GenericNode<T>> filhos) { 
+        this.profundidade = profundidade;
         this.valor = valor;
         
         this.pai = pai;
@@ -37,12 +37,12 @@ public class GenericNode<T> {
     } 
 
     // getter/setter
-    public int getAltura() {
-        return altura;
+    public int getProfundidade() {
+        return profundidade;
     }
 
-    public void setAltura(int altura) {
-        this.altura = altura;
+    public void setProfundidade(int profundidade) {
+        this.profundidade = profundidade;
     }
 
     public T getValor() {
@@ -69,6 +69,20 @@ public class GenericNode<T> {
         this.filhos = filhos;
     }
 
+    //retornar se possui filhos
+    public boolean hasFilhos() {
+        return !filhos.isEmpty();
+    }
+    public boolean isLeaf() { 
+        return filhos.isEmpty();
+    }
+    public boolean isRoot(){
+        if(this.pai == null){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     //retornar grau do nó
     public int getGrau() { 
@@ -79,4 +93,5 @@ public class GenericNode<T> {
     public void addFilho(GenericNode<T> novoFilho) {
         this.filhos.add(novoFilho);
     }
+    
 }
