@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import arvoreGenerica.GenericNode;
 
 class Main {
-  // tes
   public static void main(String[] args) {
     teste a = new teste("aasd");
     a.setName("kkkk");
@@ -33,8 +32,9 @@ class Main {
 
     // System.out.println(a.getName());
     
-    System.out.println(listaTeste);
-    
+    // System.out.println(listaTeste);
+    System.out.println("\n===\nArvore Genérica\n");
+    System.out.println("\n===\nArvore Genérica\n");
 
   }
 }
