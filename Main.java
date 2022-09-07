@@ -61,7 +61,7 @@ class Main {
 
     arvore.inserirNode(1, 3);
 
-    System.out.println(arvore.buscar(3, arvore.getRaiz()).getPai().getValor());
+    System.out.println(arvore.buscar(10, arvore.getRaiz()).getValor());
     
     A = "";
     System.out.print("Filhos de 0: ");

@@ -49,6 +49,9 @@ public class ArvoreGenerica<T> {
             }
 
         }
+        if(noResultado.getValor() != valor) {
+            System.out.println("valor não encontrado na árvore");
+        }
         return noResultado;
     }
 
