@@ -41,7 +41,21 @@ public class ArvoreGenerica<T> {
             }
         }
         return noResultado;
+    }
 
+    public void inserirNode(T no, T novoValor){ //no que quer adicionar o filho / valor que quer adicionar
+        GenericNode<T> noPai = buscar(no, this.raiz);
+        
+        if(type == 0){
+            GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
+            System.out.println("Novo filho adicionado ao nó " + no);
+
+        }else if (type == 1 && noPai.getFilhos().size() < 2){
+            GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
+            System.out.println("Novo filho adicionado ao nó " + no);
+        }else{
+            System.out.println("Não é possível inserir um novo filho em " + no);
+        }
     }
 
 }
