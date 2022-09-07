@@ -20,7 +20,7 @@ public class GenericNode<T> {
 
     //declarar um filho
     public GenericNode(T valor, GenericNode<T> pai) { 
-        // this.profundidade = pai.getProfundidade() + 1;
+        this.profundidade = pai.getProfundidade() + 1;
         this.valor = valor;
         this.pai = pai;
 
