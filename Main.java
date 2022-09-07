@@ -53,22 +53,47 @@ class Main {
     int option;
     
     // int valorRaiz = Integer.parseInt(JOptionPane.showInputDialog("Insira o valor da raiz!"));
-    ArvoreGenerica<Integer> arvore = new ArvoreGenerica<Integer>(0);
+    ArvoreGenerica<Integer> arvore = new ArvoreGenerica<Integer>(2);
 
-    arvore.inserirNode(0, 1);
+    arvore.inserirNode(2, 7);
+    arvore.inserirNode(7, 3);
+    arvore.inserirNode(7, 6);
+    arvore.inserirNode(7, 11);
+
+    arvore.inserirNode(2, 5);
+    arvore.inserirNode(5, 9);
+    arvore.inserirNode(9, 4);
+
+    System.out.println("raiz " + arvore.getRaiz());
+
     
-    arvore.inserirNode(0, 2);
-
-    arvore.inserirNode(1, 3);
-
-    System.out.println(arvore.buscar(10, arvore.getRaiz()).getValor());
+    System.out.println("saida " + arvore.buscar(3, arvore.getRaiz()).getProfundidade());
     
+    // for (int i = 0; i < 5; i++) {
+    //   System.out.print("5");
+    // }
+    System.out.println("saida " + arvore.buscar(1, arvore.getRaiz()));
+
+    // System.out.println(arvore.buscar(1, arvore.getRaiz()));
     A = "";
     System.out.print("Filhos de 0: ");
     for (int i = 0; i < arvore.getRaiz().getFilhos().size(); i++) {
       A = A + "  ("+i+") "+ arvore.getRaiz().getFilhos().get(i) + ";";
       System.out.print("("+i+") "+arvore.getRaiz().getFilhos().get(i).getValor() + ";  ");
     }
+
+    // System.out.println(arvore.buscar(1, arvore.getRaiz()).getValor());
+    // System.out.println(arvore.buscar(1, arvore.getRaiz()).getValor());
+    System.out.println("\n" + arvore.buscar(2, arvore.getRaiz()).getValor());
+
+    arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
+    
+    arvore.buscar(2, arvore.getRaiz());
+
+    System.out.println(arvore.isRoot(arvore.buscar(7, arvore.getRaiz())));
+
+    System.out.println(arvore.getProfundidade(arvore, arvore.buscar(3, arvore.getRaiz())));
+
+
   }
-  
 }
