@@ -119,7 +119,7 @@ public class ArvoreGenericaInt{
     }
 
     //funções de navegação
-    public void goToFilho(String index){ //ir para o filho
+    public void goToFilho(int index){ //ir para o filho
         
     }
 
