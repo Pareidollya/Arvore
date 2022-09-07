@@ -38,29 +38,32 @@ class Main {
     // System.out.println(listaTeste);
     System.out.println("\nArvore Genérica\n===");
       String A = "";
-    System.out.print("Filhos:");
+    // System.out.print("Filhos:");
     for (int i = 0; i < lista.size(); i++) {
       A = A + "  ("+i+") "+lista.get(i) + ";";
       // System.out.print("("+i+") "+lista.get(i) + ";  ");
     }
-    System.out.println(A);
+    // System.out.println(A);
 
-    String testeInput = JOptionPane.showInputDialog("insira um valor");
-    int testeInputInt = Integer.parseInt(testeInput);
-    System.out.println(testeInputInt);
+    // String testeInput = JOptionPane.showInputDialog("insira um valor");
+    // int testeInputInt = Integer.parseInt(testeInput);
+    // System.out.println(testeInputInt);
 
     //implementação da arvore generica
-    int option = 0;
+    int option;
     
-    int valorRaiz = Integer.parseInt(JOptionPane.showInputDialog("Insira o valor da raiz!"));
-    ArvoreGenerica<Integer> arvore = new ArvoreGenerica<Integer>(valorRaiz);
+    // int valorRaiz = Integer.parseInt(JOptionPane.showInputDialog("Insira o valor da raiz!"));
+    ArvoreGenerica<Integer> arvore = new ArvoreGenerica<Integer>(0);
 
-    switch(option) {
-      
+    arvore.inserirNode(0, 1);
+    
+    arvore.inserirNode(0, 2);
 
+    A = "";
+    System.out.print("Filhos de 0: ");
+    for (int i = 0; i < arvore.getRaiz().getFilhos().size(); i++) {
+      A = A + "  ("+i+") "+arvore.getRaiz().getFilhos().get(i) + ";";
+      System.out.print("("+i+") "+lista.get(i) + ";  ");
     }
-    
-
-
   }
 }
