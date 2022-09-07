@@ -27,14 +27,15 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             no = this.raiz;
         }
-
+        
         int maxCount = no.getFilhos().size();
-        if (maxCount > 0 && noResultado.getValor() != valor) {
+        if (maxCount > 0) {
             for (int i = 0; i < maxCount; i++) {
                 if(no.getFilhos().get(i) != null){
                     if(no.getFilhos().get(i).getValor() != valor) {
                         buscar(valor, no.getFilhos().get(i));
                     }else{
+                        // System.out.println("'achei aki'");
                         noResultado = no.getFilhos().get(i);
                     }
                 }
@@ -48,10 +49,12 @@ public class ArvoreGenerica<T> {
         
         if(type == 0){
             GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
-            System.out.println("Novo filho adicionado ao nó " + no);
+            this.raiz.addFilho(noFilho);
+            System.out.println("Novo filho " + novoValor + " adicionado ao nó " + no);
 
         }else if (type == 1 && noPai.getFilhos().size() < 2){
             GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
+            this.raiz.addFilho(noFilho);
             System.out.println("Novo filho adicionado ao nó " + no);
         }else{
             System.out.println("Não é possível inserir um novo filho em " + no);

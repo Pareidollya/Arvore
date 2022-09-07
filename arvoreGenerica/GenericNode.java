@@ -19,8 +19,8 @@ public class GenericNode<T> {
     }
 
     //declarar um filho
-    public GenericNode(int profundidade, T valor, GenericNode<T> pai) { 
-        this.profundidade = profundidade + 1;
+    public GenericNode(T valor, GenericNode<T> pai) { 
+        // this.profundidade = pai.getProfundidade() + 1;
         this.valor = valor;
         this.pai = pai;
 
