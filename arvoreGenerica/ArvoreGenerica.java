@@ -1,128 +1,47 @@
 package arvoreGenerica;
 
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
+public class ArvoreGenerica<T> {
+    private GenericNode<T> raiz;
+    private int type; // 0 para generica, 1 para binaria
 
-public class ArvoreGenerica{
-    private int option; //
-    private int altura;
-    private int elementos;
-    private GenericNode<Integer> raiz;
-    private GenericNode<Integer> atual;
-    private ArrayList<GenericNode<Integer>> folhas;
-
-    // instanciar uma arvore
     public ArvoreGenerica() {
-        this.option = 0;
-        this.altura = 0;
-        this.elementos = 0;
-
+        this.type = 0;
         this.raiz = null;
-        this.atual = null;
-        this.folhas = null;
-        System.out.println("\n===\nArvore Genérica\n");
     }
 
-    public int getOption() {
-        return option;
+    public ArvoreGenerica(T valor) { // instanciar com uma raiz de valor X
+        this.type = 0;
+        this.raiz = new GenericNode<T>(valor);
     }
 
-    public void setOption(int option) {
-        this.option = option;
-    }
-
-    public int getAltura() {
-        return altura;
-    }
-
-    public void setAltura(int altura) {
-        this.altura = altura;
-    }
-
-    public GenericNode<Integer> getRaiz() {
+    public GenericNode<T> getRaiz() {
         return raiz;
     }
 
-    public void setRaiz(GenericNode<Integer> raiz) {
+    public void setRaiz(GenericNode<T> raiz) {
         this.raiz = raiz;
     }
 
-    public GenericNode<Integer> getAtual() {
-        return atual;
-    }
+    public GenericNode<T> buscar(T valor, GenericNode<T> no) { // retornar um nó pelo seu valor
+        GenericNode<T> noResultado = null;
+        if (no == null) {
+            no = this.raiz;
+        }
 
-    public void setAtual(GenericNode<Integer> atual) {
-        this.atual = atual;
-    }
-
-    public ArrayList<GenericNode<Integer>> getFolhas() {
-        return folhas;
-    }
-
-    public void setFolhas(ArrayList<GenericNode<Integer>> folhas) {
-        this.folhas = folhas;
-    }
-
-    //funções
-    public String showFilhosList() { // vizualizar lista de filhos com index.
-        int numFilhos = this.atual.getFilhos().size();
-        String filhosList = "";
-        if (numFilhos == 0) {
-            filhosList = "Este nó não possui filho...";
-        } else {
-            filhosList = Integer.toString(numFilhos) + " ";
-            for (int i = 0; i < numFilhos; i++) {
-                filhosList = filhosList + "  (" + i + ") " + this.atual.getFilhos().get(i) + ";";
-                // System.out.print("("+i+") "+lista.get(i) + "; ");
+        int maxCount = no.getFilhos().size();
+        if (maxCount > 0 && noResultado.getValor() != valor) {
+            for (int i = 0; i < maxCount; i++) {
+                if(no.getFilhos().get(i) != null){
+                    if(no.getFilhos().get(i).getValor() != valor) {
+                        buscar(valor, no.getFilhos().get(i));
+                    }else{
+                        noResultado = no.getFilhos().get(i);
+                    }
+                }
             }
         }
+        return noResultado;
 
-        return filhosList;
-    }
-
-    public String getActualStatus() { // vizuzalizar informações do nó atual
-        String valor = this.atual.getValor().toString();
-        String pai = this.atual.getPai().getValor().toString();
-
-        return "\nNó atual: " + valor 
-                + "\nPai: " + pai
-                + "\n" + showFilhosList();
-    }
-
-    public void inserirNode() { // inserir um nó raiz ou adicionar um filho.
-        String valorStr;
-        int valorInt;
-
-        if (this.raiz == null) {
-            valorStr = JOptionPane.showInputDialog("Insira o valor do nó Raiz.");
-            valorInt = Integer.parseInt(valorStr);
-
-            this.raiz =  new GenericNode<Integer>(valorInt);
-            this.atual = this.raiz;
-
-            this.elementos++;
-
-            System.out.println("Raiz adicionada \n");
-
-        } else { //inserir um nó filho ao nó atual.
-            valorStr = JOptionPane.showInputDialog("Insira o valor do novo filho.");
-            valorInt = Integer.parseInt(valorStr);
-
-            GenericNode<Integer> novoFilho = new GenericNode<Integer>(valorInt);
-            this.atual.addFilho(novoFilho);
-
-            this.elementos++;
-
-            System.out.println("Novo filho adicionado ao nó " + this.atual.getValor().toString());
-        }
-    }
-
-    public void run() {
-        switch (this.option) {
-            case 0: // caso ainda não possua raiz
-                System.out.println("Instanciar raiz");
-
-        }
     }
 
 }
