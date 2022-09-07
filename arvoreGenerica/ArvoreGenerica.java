@@ -22,53 +22,96 @@ public class ArvoreGenerica<T> {
         this.raiz = raiz;
     }
 
+    public boolean isRoot(GenericNode<T> no){
+        if(no == this.raiz){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     GenericNode<T> noResultado = null;
     public GenericNode<T> buscar(T valor, GenericNode<T> no) { // retornar um nó pelo seu valor
-        
         if (no == null) {
             no = this.raiz;
         }
-        if(this.raiz.getValor() == valor){
+        if (this.raiz.getValor() == valor) {
             noResultado = this.raiz;
         }
-        
+
         int maxCount = no.getFilhos().size();
-        // System.out.println(maxCount);
         if (maxCount > 0) {
             for (int i = 0; i < maxCount; i++) {
-                
-                if(no.getFilhos().get(i).getValor() != valor) {
+                if (no.getFilhos().get(i).getValor() != valor) { // || no.getFilhos().get(i).getValor() == null
                     buscar(valor, no.getFilhos().get(i));
-                    // System.out.println(" n achei aki'");
-                }else{
-                    // System.out.println("'achei aki'");
+                } else {
                     noResultado = no.getFilhos().get(i);
-                
+                    
                 }
-            
             }
-
         }
-        if(noResultado.getValor() != valor) {
-            System.out.println("valor não encontrado na árvore");
+        try {
+            if (noResultado.getValor() != valor) {
+                noResultado = null;
+            }
+        } catch (Exception e) {
+            throw new NullPointerException("Nó inválido (null).");
+        } finally {
+            // System.out.println(noResultado.getValor());
+            return noResultado;
         }
-        return noResultado;
+        
     }
 
-    public void inserirNode(T no, T novoValor){ //no que quer adicionar o filho / valor que quer adicionar
+    public void inserirNode(T no, T novoValor) { // no que quer adicionar o filho / valor que quer adicionar
         GenericNode<T> noPai = buscar(no, this.raiz);
-        if(type == 0){
+
+        if (type == 0 && noPai != null) {
             GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
             noPai.addFilho(noFilho);
+
             System.out.println("Novo filho " + novoValor + " adicionado ao nó " + no);
 
-        }else if (type == 1 && noPai.getFilhos().size() < 2){
+        } else if (type == 1 && noPai.getFilhos().size() < 2 && noPai != null) { // caso seja binaria não inserir mais
+                                                                                 // de 2
             GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
             noPai.addFilho(noFilho);
+
             System.out.println("Novo filho adicionado ao nó " + no);
-        }else{
+
+        } else {
             System.out.println("Não é possível inserir um novo filho em " + no);
         }
     }
 
+    public void showTree(GenericNode<T> no){ //caso passar um no exibir a sub arvore (igual a busca)
+        if (no == null){
+            no = this.raiz;
+        }
+        int maxCount = no.getFilhos().size();
+        if (maxCount > 0) {
+            for (int i = 0; i < maxCount; i++) {
+                if (no.getFilhos().size() > 0) { // || no.getFilhos().get(i).getValor() == null
+                    System.out.print("  ");
+                    for (int j = 0; j < no.getProfundidade(); j++) {
+                        System.out.print("  ");
+                      }
+                    System.out.println(no.getFilhos().get(i).getValor());
+                    showTree(no.getFilhos().get(i));
+                } 
+            }
+        }
+    } 
+
+    public int getProfundidade(ArvoreGenerica<T> Arvore , GenericNode<T> no){
+        if(Arvore.isRoot(no)){
+            return 0;
+        }
+        else{
+            return 1 + getProfundidade(Arvore, no.getPai());
+        }
+        
+    }
+
+    
 }
