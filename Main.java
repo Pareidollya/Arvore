@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import arvoreGenerica.ArvoreGenerica;
 import arvoreGenerica.GenericNode;
 
 class Main {
@@ -18,7 +19,7 @@ class Main {
     lista.add(2);
     lista.add(3);
 
-    // for (int i = 0; i < lista.size(); i++)  {
+    // for (int i = 0; i < lista.size(); i++)  { metodo para remover as outras posições
     //   if(i > 1){
     //     lista.remove(i);
     //   }
@@ -47,5 +48,19 @@ class Main {
     String testeInput = JOptionPane.showInputDialog("insira um valor");
     int testeInputInt = Integer.parseInt(testeInput);
     System.out.println(testeInputInt);
+
+    //implementação da arvore generica
+    int option = 0;
+    
+    int valorRaiz = Integer.parseInt(JOptionPane.showInputDialog("Insira o valor da raiz!"));
+    ArvoreGenerica<Integer> arvore = new ArvoreGenerica<Integer>(valorRaiz);
+
+    switch(option) {
+      
+
+    }
+    
+
+
   }
 }
