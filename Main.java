@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import arvoreGenerica.GenericNode;
 
 class Main {
@@ -33,8 +35,17 @@ class Main {
     // System.out.println(a.getName());
     
     // System.out.println(listaTeste);
-    System.out.println("\n===\nArvore Genérica\n");
-    System.out.println("\n===\nArvore Genérica\n");
+    System.out.println("\nArvore Genérica\n===");
+      String A = "";
+    System.out.print("Filhos:");
+    for (int i = 0; i < lista.size(); i++) {
+      A = A + "  ("+i+") "+lista.get(i) + ";";
+      // System.out.print("("+i+") "+lista.get(i) + ";  ");
+    }
+    System.out.println(A);
 
+    String testeInput = JOptionPane.showInputDialog("insira um valor");
+    int testeInputInt = Integer.parseInt(testeInput);
+    System.out.println(testeInputInt);
   }
 }
