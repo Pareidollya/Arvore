@@ -59,11 +59,16 @@ class Main {
     
     arvore.inserirNode(0, 2);
 
+    arvore.inserirNode(1, 3);
+
+    System.out.println(arvore.buscar(3, arvore.getRaiz()).getPai().getValor());
+    
     A = "";
     System.out.print("Filhos de 0: ");
     for (int i = 0; i < arvore.getRaiz().getFilhos().size(); i++) {
-      A = A + "  ("+i+") "+arvore.getRaiz().getFilhos().get(i) + ";";
-      System.out.print("("+i+") "+lista.get(i) + ";  ");
+      A = A + "  ("+i+") "+ arvore.getRaiz().getFilhos().get(i) + ";";
+      System.out.print("("+i+") "+arvore.getRaiz().getFilhos().get(i).getValor() + ";  ");
     }
   }
+  
 }
