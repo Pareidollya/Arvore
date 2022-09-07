@@ -92,8 +92,14 @@ class Main {
 
     System.out.println(arvore.isRoot(arvore.buscar(7, arvore.getRaiz())));
 
-    System.out.println(arvore.getProfundidade(arvore, arvore.buscar(3, arvore.getRaiz())));
-
-
+    // System.out.println(arvore.getProfundidade(arvore, arvore.buscar(3, arvore.getRaiz())));
+    // System.out.println(arvore.buscar(3, arvore.getRaiz()).getProfundidade());
+    arvore.inserirNode(4, 20);
+    
+    System.out.println(arvore.getFolhas(null));
+    arvore.clearFolhas();
+    
+    System.out.println(arvore.getFolhas(null));
+    
   }
 }

@@ -1,5 +1,7 @@
 package arvoreGenerica;
 
+import java.util.ArrayList;
+
 public class ArvoreGenerica<T> {
     private GenericNode<T> raiz;
     private int type; // 0 para generica, 1 para binaria
@@ -110,7 +112,28 @@ public class ArvoreGenerica<T> {
         else{
             return 1 + getProfundidade(Arvore, no.getPai());
         }
-        
+    }   
+
+    ArrayList<GenericNode<T>> folhas = new ArrayList<>();
+    public void clearFolhas(){
+        folhas.clear();
+    }
+    public ArrayList<GenericNode<T>> getFolhas(GenericNode<T> no){
+        if(no == null){
+            no = this.raiz;
+        }
+
+        int maxCount = no.getFilhos().size();
+        if (maxCount > 0) {
+            for (int i = 0; i < maxCount; i++) {
+                if (no.getFilhos().size() > 0) { // || no.getFilhos().get(i).getValor() == null
+                    getFolhas(no.getFilhos().get(i));
+                } 
+            }
+        }else{
+            folhas.add(no);
+        }
+        return folhas;
     }
 
     
