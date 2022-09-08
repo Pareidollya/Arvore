@@ -95,13 +95,13 @@ class Main {
     
     // System.out.println(arvore.buscar(3, arvore.getRaiz()).getProfundidade());
     // arvore.inserirNode(4, 20);
-    
+
     System.out.println("folhas aq: " +arvore.getFolhas(null)); //retornar folhas da arvore ou do nó inserido
   
     System.out.println("altura da arvore: " + arvore.getAlturaThree()); //altura da arvore
     
     arvore.clear();
-    System.out.println("folhas aq: " +arvore.getFolhas(arvore.buscar(7, arvore.getRaiz())));
+    System.out.println("folhas aq: " +arvore.getFolhas(arvore.buscar(2, arvore.getRaiz())));
     arvore.clear();
     System.out.println("profundidade de nó: " + arvore.getProfundidade(arvore, arvore.buscar(2, arvore.getRaiz())));
     System.out.println("altura de 5 (forced): " + arvore.getProfundidadeFromNode( arvore.buscar(5, arvore.getRaiz()), arvore.buscar(4, arvore.getRaiz()) ));
@@ -125,9 +125,15 @@ class Main {
     
     System.out.println(arvore.buscar(100, null).getFilhos());
 
+    
     arvore.inserirNode(101, 102);
-    arvore.showTree(null);
+    arvore.inserirNode(101, 103);
 
+    arvore.buscar(103, null).getFilhos().add(null);
+    arvore.buscar(103, null).getFilhos().add(null);
+
+    arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
+    System.out.println("folhas aq: " +arvore.getFolhas(arvore.buscar(2, arvore.getRaiz())));
   
   }
 }
