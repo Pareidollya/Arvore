@@ -111,7 +111,9 @@ class Main {
     System.out.println("altura de nó: " + arvore.getAlturaNode(arvore.buscar(2, arvore.getRaiz())));
     arvore.clear();
 
-    System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(2, arvore.getRaiz())));
+    System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(4, arvore.getRaiz())));
 
+    arvore.showFolhas(null);
+    arvore.showInternos(null);
   }
 }
