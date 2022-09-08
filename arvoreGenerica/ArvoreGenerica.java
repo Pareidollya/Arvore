@@ -143,40 +143,45 @@ public class ArvoreGenerica<T> {
                 altura_arvore = folhasList.get(i).getProfundidade();
             }
         }
-        this.clear();
+        clear();
         return altura_arvore;
     }
 
-    public int getProfundidadeFromNode(GenericNode<T> noAlvo, GenericNode<T> no) { //retornar profundidade de um no folha ate o que eu quero.
-        System.out.println("dsaokfjsdklf");
-        if(no.isRoot()){
+    public int getProfundidadeFromNode(GenericNode<T> noAlvo, GenericNode<T> noFilho) { //retornar profundidade de um no folha ate o que eu quero.
+        // System.out.println("dsaokfjsdklf");
+        if(noFilho.isRoot()){
             return 0;
         }
-        if (noAlvo.getValor() == no.getValor()) {
+        if (noAlvo.getValor() == noFilho.getValor()) {
             return 0;
         } else {
-            return 1 + getProfundidadeFromNode(noAlvo, no.getPai());
+            return 1 + getProfundidadeFromNode(noAlvo, noFilho.getPai());
         }
     }
 
-    int alturaAux;
-    public int getAlturaNode(GenericNode<T> no) {
-        int maxCount = no.getFilhos().size();
-        
-        
-        return alturaAux;
-        
+    public int getAlturaNode(GenericNode<T> no) { //atravez das folhas de sua sub árvore retornar a altura do nó especificado.
+        ArrayList<GenericNode<T>> folhasList = this.getFolhas(no);
+        int maxCount = folhasList.size();
 
-
+        int aux = 0;
+        int altura = 0;
+        if(maxCount > 0){
+            for (int i = 0; i < maxCount; i++) {
+                if(getProfundidadeFromNode(no, folhasList.get(i)) > altura){
+                    altura = getProfundidadeFromNode(no, folhasList.get(i));
+                }
+            }
+        }
+        clear();
+        return altura;
+    
         
-
     }
     
 
     public void clear() { // limpar variaveis auxiliares para evitar bugs (utilizar no metodo main)
         folhas.clear();
         noResultado = null;
-        alturaAux = 0;
         // altura_arvore = 0;
 
     }

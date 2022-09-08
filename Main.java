@@ -98,12 +98,16 @@ class Main {
     
     System.out.println(arvore.getFolhas(null)); //retornar folhas da arvore ou do nó inserido
   
-    System.out.println(arvore.getAlturaThree()); //altura da arvore
+    System.out.println("altura da arvore: " + arvore.getAlturaThree()); //altura da arvore
     
     arvore.clear();
     System.out.println(arvore.getFolhas(arvore.buscar(7, arvore.getRaiz())));
     arvore.clear();
 
-    System.out.println(arvore.getProfundidadeFromNode( arvore.buscar(5, arvore.getRaiz()), arvore.buscar(2, arvore.getRaiz()) ));
+    System.out.println("altura de 5 (forced): " + arvore.getProfundidadeFromNode( arvore.buscar(5, arvore.getRaiz()), arvore.buscar(4, arvore.getRaiz()) ));
+    System.out.println("folha do nó 5: " + arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())).get(0).getValor());
+
+    arvore.clear();
+    System.out.println("altura de nó: " + arvore.getAlturaNode(arvore.buscar(7, arvore.getRaiz())));
   }
 }
