@@ -86,7 +86,18 @@ public class GenericNode<T> {
     
     //retornar grau do nó
     public int getGrau() { 
-        return filhos.size();
+        if(filhos.size() == 2 && filhos.get(0) == null && filhos.get(1) == null){ //para caso de 
+            return 0;
+        }else if(filhos.size() == 2 && filhos.get(0) != null && filhos.get(1) == null){
+            return 1;
+        }else if(filhos.size() == 2 && filhos.get(0) == null && filhos.get(1) != null){
+            return 1;
+        }else if(filhos.size() == 2 && filhos.get(0) != null &&  filhos.get(1) != null){
+            return 2;
+        }else{
+            return filhos.size();
+        }
+        // 
     }
 
     //adicionar um novo filho ao nó
