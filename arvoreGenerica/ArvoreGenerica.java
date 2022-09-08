@@ -115,7 +115,6 @@ public class ArvoreGenerica<T> {
     }
     
     ArrayList<GenericNode<T>> folhas = new ArrayList<>();
-
     public ArrayList<GenericNode<T>> getFolhas(GenericNode<T> no) {
         if (no == null) {
             no = this.raiz;
@@ -147,8 +146,9 @@ public class ArvoreGenerica<T> {
         return altura_arvore;
     }
 
-    public int getProfundidadeFromNode(GenericNode<T> noAlvo, GenericNode<T> noFilho) { //retornar profundidade de um no folha ate o que eu quero.
-        // System.out.println("dsaokfjsdklf");
+    //caso usar a raiz, irá retornar altura da arvore
+    public int getProfundidadeFromNode(GenericNode<T> noAlvo, GenericNode<T> noFilho) { //retornar profundidade de um no folha ate o que eu quero = altura do no que quero. 
+
         if(noFilho.isRoot()){
             return 0;
         }
@@ -172,13 +172,28 @@ public class ArvoreGenerica<T> {
                 }
             }
         }
-        clear();
-        return altura;
-    
-        
-    }
-    
 
+        clear();
+        return altura;    
+    }
+
+    public int getMaxNodeGrau(GenericNode<T> no){
+        if (no == null) {
+            no = this.raiz;
+        }
+        int maxCount = no.getFilhos().size();
+        int maxGrau = no.getGrau(); //maior grau será definido a partir do primeiro nó instanciado 
+        if(maxCount > 0){
+            for (int i = 0; i < maxCount; i++) { //percorrer todos os nós em busca do maior grau dentree eles
+                if(no.getFilhos().get(i).getGrau() > maxGrau){
+                    maxGrau = no.getFilhos().get(i).getGrau();
+                }
+            }
+        }
+        return maxGrau;
+    }
+
+    
     public void clear() { // limpar variaveis auxiliares para evitar bugs (utilizar no metodo main)
         folhas.clear();
         noResultado = null;

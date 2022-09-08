@@ -92,7 +92,7 @@ class Main {
 
     System.out.println(arvore.isRoot(arvore.buscar(7, arvore.getRaiz())));
 
-    // System.out.println(arvore.getProfundidade(arvore, arvore.buscar(3, arvore.getRaiz())));
+    
     // System.out.println(arvore.buscar(3, arvore.getRaiz()).getProfundidade());
     // arvore.inserirNode(4, 20);
     
@@ -103,11 +103,15 @@ class Main {
     arvore.clear();
     System.out.println(arvore.getFolhas(arvore.buscar(7, arvore.getRaiz())));
     arvore.clear();
-
+    System.out.println("profundidade de nó: " + arvore.getProfundidade(arvore, arvore.buscar(2, arvore.getRaiz())));
     System.out.println("altura de 5 (forced): " + arvore.getProfundidadeFromNode( arvore.buscar(5, arvore.getRaiz()), arvore.buscar(4, arvore.getRaiz()) ));
     System.out.println("folha do nó 5: " + arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())).get(0).getValor());
 
     arvore.clear();
-    System.out.println("altura de nó: " + arvore.getAlturaNode(arvore.buscar(7, arvore.getRaiz())));
+    System.out.println("altura de nó: " + arvore.getAlturaNode(arvore.buscar(2, arvore.getRaiz())));
+    arvore.clear();
+
+    System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(2, arvore.getRaiz())));
+
   }
 }
