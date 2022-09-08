@@ -116,6 +116,8 @@ class Main {
     arvore.showFolhas(null);
     arvore.showInternos(null);
 
+
+    //TESTES COM NÓS BINARIOS
     arvore.inserirNode(4, 100);
     arvore.buscar(100, null).getFilhos().add(null);
     arvore.buscar(100, null).getFilhos().add(null);
@@ -133,7 +135,13 @@ class Main {
     arvore.buscar(103, null).getFilhos().add(null);
 
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
-    System.out.println("folhas aq: " +arvore.getFolhas(arvore.buscar(2, arvore.getRaiz())));
-  
+    System.out.println("folhas aq: " +arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())).get(1).getValor());
+    arvore.clear();
+    System.out.println("profundidade de nó: " + arvore.getProfundidade(arvore, arvore.buscar(103, arvore.getRaiz())));
+    arvore.clear();
+    System.out.println("altura de x ate y: " + arvore.getProfundidadeFromNode( arvore.buscar(2, arvore.getRaiz()), arvore.buscar(103, arvore.getRaiz())));
+    arvore.clear();
+    System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(102, arvore.getRaiz())));
+    arvore.clear();
   }
 }

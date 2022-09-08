@@ -190,10 +190,7 @@ public class ArvoreGenerica<T> {
     }
 
     // caso usar a raiz, irá retornar altura da arvore
-    public int getProfundidadeFromNode(GenericNode<T> noAlvo, GenericNode<T> noFilho) { // retornar profundidade de umno
-                                                                                        // folha ate o que eu quero
-                                                                                        // altura do no que quero.
-
+    public int getProfundidadeFromNode(GenericNode<T> noAlvo, GenericNode<T> noFilho) { // retornar profundidade de umno}
         if (noFilho.isRoot()) {
             return 0;
         }
@@ -231,9 +228,12 @@ public class ArvoreGenerica<T> {
         int maxGrau = no.getGrau(); // maior grau será definido a partir do primeiro nó instanciado
         if (maxCount > 0) {
             for (int i = 0; i < maxCount; i++) { // percorrer todos os nós em busca do maior grau dentree eles
-                if (no.getFilhos().get(i).getGrau() > maxGrau) {
-                    maxGrau = no.getFilhos().get(i).getGrau();
+                if (no.getFilhos().get(i) != null) {
+                    if (no.getFilhos().get(i).getGrau() > maxGrau) {
+                        maxGrau = no.getFilhos().get(i).getGrau();
+                    }
                 }
+                
             }
         }
         return maxGrau;
