@@ -24,15 +24,16 @@ public class ArvoreGenerica<T> {
         this.raiz = raiz;
     }
 
-    public boolean isRoot(GenericNode<T> no){
-        if(no == this.raiz){
+    public boolean isRoot(GenericNode<T> no) {
+        if (no == this.raiz) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     GenericNode<T> noResultado = null;
+
     public GenericNode<T> buscar(T valor, GenericNode<T> no) { // retornar um nó pelo seu valor
         if (no == null) {
             no = this.raiz;
@@ -48,7 +49,7 @@ public class ArvoreGenerica<T> {
                     buscar(valor, no.getFilhos().get(i));
                 } else {
                     noResultado = no.getFilhos().get(i);
-                    
+
                 }
             }
         }
@@ -62,7 +63,7 @@ public class ArvoreGenerica<T> {
             // System.out.println(noResultado.getValor());
             return noResultado;
         }
-        
+
     }
 
     public void inserirNode(T no, T novoValor) { // no que quer adicionar o filho / valor que quer adicionar
@@ -86,8 +87,8 @@ public class ArvoreGenerica<T> {
         }
     }
 
-    public void showTree(GenericNode<T> no){ //caso passar um no exibir a sub arvore (igual a busca)
-        if (no == null){
+    public void showTree(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
+        if (no == null) {
             no = this.raiz;
         }
         int maxCount = no.getFilhos().size();
@@ -97,29 +98,26 @@ public class ArvoreGenerica<T> {
                     System.out.print("  ");
                     for (int j = 0; j < no.getProfundidade(); j++) {
                         System.out.print("  ");
-                      }
+                    }
                     System.out.println(no.getFilhos().get(i).getValor());
                     showTree(no.getFilhos().get(i));
-                } 
+                }
             }
         }
-    } 
+    }
 
-    public int getProfundidade(ArvoreGenerica<T> Arvore , GenericNode<T> no){
-        if(Arvore.isRoot(no)){
+    public int getProfundidade(ArvoreGenerica<T> Arvore, GenericNode<T> no) {
+        if (Arvore.isRoot(no)) {
             return 0;
-        }
-        else{
+        } else {
             return 1 + getProfundidade(Arvore, no.getPai());
         }
-    }   
-
-    ArrayList<GenericNode<T>> folhas = new ArrayList<>();
-    public void clearFolhas(){
-        folhas.clear();
     }
-    public ArrayList<GenericNode<T>> getFolhas(GenericNode<T> no){
-        if(no == null){
+    
+    ArrayList<GenericNode<T>> folhas = new ArrayList<>();
+
+    public ArrayList<GenericNode<T>> getFolhas(GenericNode<T> no) {
+        if (no == null) {
             no = this.raiz;
         }
 
@@ -128,13 +126,58 @@ public class ArvoreGenerica<T> {
             for (int i = 0; i < maxCount; i++) {
                 if (no.getFilhos().size() > 0) { // || no.getFilhos().get(i).getValor() == null
                     getFolhas(no.getFilhos().get(i));
-                } 
+                }
             }
-        }else{
+        } else {
             folhas.add(no);
         }
         return folhas;
     }
 
+    public int getAlturaThree() { // pegar altura atravez das folhas
+        int altura_arvore = 0;
+        ArrayList<GenericNode<T>> folhasList = getFolhas(null);
+
+        for (int i = 0; i < folhasList.size(); i++) {
+            if (folhasList.get(i).getProfundidade() > altura_arvore) {
+                altura_arvore = folhasList.get(i).getProfundidade();
+            }
+        }
+        this.clear();
+        return altura_arvore;
+    }
+
+    public int getProfundidadeFromNode(GenericNode<T> noAlvo, GenericNode<T> no) { //retornar profundidade de um no folha ate o que eu quero.
+        System.out.println("dsaokfjsdklf");
+        if(no.isRoot()){
+            return 0;
+        }
+        if (noAlvo.getValor() == no.getValor()) {
+            return 0;
+        } else {
+            return 1 + getProfundidadeFromNode(noAlvo, no.getPai());
+        }
+    }
+
+    int alturaAux;
+    public int getAlturaNode(GenericNode<T> no) {
+        int maxCount = no.getFilhos().size();
+        
+        
+        return alturaAux;
+        
+
+
+        
+
+    }
     
+
+    public void clear() { // limpar variaveis auxiliares para evitar bugs (utilizar no metodo main)
+        folhas.clear();
+        noResultado = null;
+        alturaAux = 0;
+        // altura_arvore = 0;
+
+    }
 }
