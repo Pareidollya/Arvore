@@ -220,10 +220,15 @@ public class ArvoreGenerica<T> {
             no = this.raiz;
         }
         internosList = getInternosList(no);
-        System.out.print("\nNós Internos: ");
+        if(internosList.size() > 0){
+            System.out.print("\nNós Internos de "+no.getValor() + "(" + internosList.size()+ "): ");
         for (int i = 0; i < internosList.size(); i++) {
             System.out.print(internosList.get(i).getValor() + " ");
         }
+        }else{
+            System.out.println("\nEsta (sub)arvore não possui nós internos.");
+        }
+        
         clear();
     }
 
@@ -232,10 +237,15 @@ public class ArvoreGenerica<T> {
             no = this.raiz;
         }
         folhas = getFolhas(no);
-        System.out.print("\nNós Folhas: ");
-        for (int i = 0; i < folhas.size(); i++) {
-            System.out.print(folhas.get(i).getValor() + " ");
+        if(folhas.size() > 0){
+            System.out.print("\nNós Folhas de "+no.getValor() + "("+ folhas.size()+ "): " );
+            for (int i = 0; i < folhas.size(); i++) {
+                System.out.print(folhas.get(i).getValor() + " ");
+            }
+        }else{
+            System.out.println("\nEsta (sub)arvore não possui nós folhas.");
         }
+       
         clear();
     }
 
