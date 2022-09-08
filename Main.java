@@ -94,12 +94,16 @@ class Main {
 
     // System.out.println(arvore.getProfundidade(arvore, arvore.buscar(3, arvore.getRaiz())));
     // System.out.println(arvore.buscar(3, arvore.getRaiz()).getProfundidade());
-    arvore.inserirNode(4, 20);
+    // arvore.inserirNode(4, 20);
     
-    System.out.println(arvore.getFolhas(null));
-    arvore.clearFolhas();
+    System.out.println(arvore.getFolhas(null)); //retornar folhas da arvore ou do nó inserido
+  
+    System.out.println(arvore.getAlturaThree()); //altura da arvore
     
-    System.out.println(arvore.getFolhas(null));
-    
+    arvore.clear();
+    System.out.println(arvore.getFolhas(arvore.buscar(7, arvore.getRaiz())));
+    arvore.clear();
+
+    System.out.println(arvore.getProfundidadeFromNode( arvore.buscar(5, arvore.getRaiz()), arvore.buscar(2, arvore.getRaiz()) ));
   }
 }
