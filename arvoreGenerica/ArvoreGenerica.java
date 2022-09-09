@@ -275,6 +275,8 @@ public class ArvoreGenerica<T> {
     public void showNodeInfo(T valor) { // imprimir informações de um nó de valor x
         GenericNode<T> node = buscar(valor, null);
 
+        
+
     }
 
     // funçoes para binaria
@@ -282,7 +284,7 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             no = this.raiz;
         }
-        if (no.getFilhos().get(0) == null) {
+        if (no.getFilhos().get(0) == null || no.getFilhos().size() == 0) {
             return false;
         } else {
             return true;
@@ -293,7 +295,7 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             no = this.raiz;
         }
-        if (no.getFilhos().get(1) == null) {
+        if (no.getFilhos().get(1) == null || no.getFilhos().size() <= 1) {
             return false;
         } else {
             return true;
@@ -338,7 +340,6 @@ public class ArvoreGenerica<T> {
             GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
             noPai.getFilhos().remove(1);
             noPai.getFilhos().add(1, noFilho);
-            System.out.println("cu");
         }
         return noPai.getFilhos().get(1);
         // return no.getFilhos().get(no.getFilhos().size() - 1);
@@ -360,12 +361,7 @@ public class ArvoreGenerica<T> {
             }
             if(no.getFilhos().size() > 0 && no.getFilhos().get(i) != null){
                 convertToBinary(no.getFilhos().get(i));
-            }
-            
-                    
-            
-           
-            
+            }     
         }
     }
 }

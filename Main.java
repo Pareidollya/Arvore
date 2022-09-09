@@ -133,20 +133,31 @@ class Main {
 
     arvore.buscar(103, null).getFilhos().add(null);
     arvore.buscar(103, null).getFilhos().add(null);
+    arvore.inserirNode(101, 104);
 
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
-    System.out.println("folhas aq: " +arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())).get(1).getValor());
+    System.out.println("folhas aq: " +arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())));
     arvore.clear();
     System.out.println("profundidade de nó: " + arvore.getProfundidade(arvore, arvore.buscar(103, arvore.getRaiz())));
     arvore.clear();
     System.out.println("altura de x ate y: " + arvore.getProfundidadeFromNode( arvore.buscar(2, arvore.getRaiz()), arvore.buscar(103, arvore.getRaiz())));
     arvore.clear();
-    System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(102, arvore.getRaiz())));
+    System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(2, arvore.getRaiz())));
     arvore.clear();
 
-    arvore.convertToBinary(arvore.buscar(7, null));
+    arvore.convertToBinary(arvore.buscar(2, null));
     arvore.showTree(arvore.buscar(2, null));
 
-    
+    arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
+    System.out.println("folhas aq: " +arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())));
+    arvore.clear();
+    System.out.println("profundidade de nó: " + arvore.getProfundidade(arvore, arvore.buscar(103, arvore.getRaiz())));
+    arvore.clear();
+    System.out.println("altura de x ate y: " + arvore.getProfundidadeFromNode( arvore.buscar(2, arvore.getRaiz()), arvore.buscar(103, arvore.getRaiz())));
+    arvore.clear();
+    System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(2, arvore.getRaiz())));
+    arvore.clear();
+
+
   }
 }
