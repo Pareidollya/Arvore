@@ -348,16 +348,24 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             no = this.raiz;
         }
-        int maxCount = no.getFilhos().size();
 
+        int maxCount = no.getFilhos().size();
         if (maxCount > 0) {
             for (int i = 0; i < maxCount; i++) {
                 if (no.getFilhos().size() > 2 && no.getFilhos().get(i) != null) { 
                     for (int j = 2; j < no.getFilhos().size(); j++) {
                        no.getFilhos().remove(j); 
+                       maxCount = no.getFilhos().size();
                 }
+            }
+            if(no.getFilhos().size() > 0 && no.getFilhos().get(i) != null){
                 convertToBinary(no.getFilhos().get(i));
             }
+            
+                    
+            
+           
+            
         }
     }
 }
