@@ -274,9 +274,47 @@ public class ArvoreGenerica<T> {
 
     public void showNodeInfo(T valor) { // imprimir informações de um nó de valor x
         GenericNode<T> node = buscar(valor, null);
-
+        System.out.println("------ \nINFORMAÇÕES DO NÓ:");
+        System.out.println("Valor: " + node.getValor());
+        if(node == this.raiz){
+            System.out.println("Tipo: Nó Raiz");
+        }else if(node.getGrau() == 0){
+            System.out.println("Tipo: Nó Folha");
+        }else{
+            System.out.println("Tipo: Nó Interno");
+        }
+        System.out.println("Nó pai: " + node.getPai().getValor());
+        System.out.print("Filhos: ");
+        if(node.getGrau() > 0){
+            for (int i = 0; i < node.getFilhos().size(); i++) {
+                if(node.getFilhos().get(i) != null){
+                    System.out.print(node.getFilhos().get(i).getValor() + ";  ");
+                }
+            }
+        }else{
+            System.out.print("Não possui filhos.");
+        }
         
+        System.out.print("\n");
+        System.out.println("Grau: " + node.getGrau());
+        System.out.println("Profundidade: " + node.getProfundidade());
+        System.out.println("Altura: " + getAlturaNode(node));
+        
+        if(this.type == 1){
+            System.out.println( "Filho esquerdo: " + node.getFilhos().get(0) 
+                                + "Filho direito: " + node.getFilhos().get(1) +"\n");
+        }
+        System.out.print("\n------\n");
+    }
+    public void removeNode(T valor){
+        GenericNode<T> node = buscar(valor, null);
+        GenericNode<T> nodePai = node.getPai();
 
+        node.setPai(null);
+
+        nodePai.getFilhos().remove(node);
+
+        System.out.println("Nó removido da árvore.");
     }
 
     // funçoes para binaria
@@ -365,6 +403,7 @@ public class ArvoreGenerica<T> {
         }
     }
 }
+
 
     // if(maxCount == 0){
     // no.getFilhos().add(null);

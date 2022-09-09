@@ -158,6 +158,14 @@ class Main {
     System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(2, arvore.getRaiz())));
     arvore.clear();
 
+    arvore.showNodeInfo(103);
+
+    arvore.removeNode(103);
+    arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
+    arvore.showNodeInfo(102);
+
+    
+
 
   }
 }
