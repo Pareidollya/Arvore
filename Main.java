@@ -229,7 +229,7 @@ class Main {
       System.out.println("11 = Excluir um nó");
       System.out.println("12 = Converter árvore para BINÁRIA");
 
-      System.out.println("12 = Converter árvore para BINÁRIA");
+      System.out.println("13 = Exibir altura dos nós");
 
       System.out.print("Insira a opção: ");
       option = s.nextInt();
@@ -365,6 +365,17 @@ class Main {
           a.convertToBinary(a.buscar(v1, a.getRaiz()));
           a.setType(1);
           break;
+
+          case 13:
+          System.out.print("Insira o nó: ");
+          v1 = s.nextInt();
+          System.out.println("Grau dos nós:");
+          System.out.println(a.buscar(v1, a.getRaiz()).getGrau());
+          a.showGraus(a.buscar(v1, a.getRaiz()));
+
+          System.out.println("");
+          break;
+
       }
       a.clear();
 

@@ -177,6 +177,25 @@ public class ArvoreGenerica<T> {
             }
         }
     }
+    public void showGraus(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
+        if (no == null) {
+            no = this.raiz;
+        }
+        int maxCount = no.getFilhos().size();
+        if (maxCount > 0) {
+            for (int i = 0; i < maxCount; i++) {
+                if (no.getFilhos().size() > 0 && no.getFilhos().get(i) != null) { // || no.getFilhos().get(i).getValor()
+                                                                                  // == null
+                    System.out.print("  ");
+                    for (int j = 0; j < no.getProfundidade(); j++) {
+                        System.out.print("  ");
+                    }
+                    System.out.println(no.getGrau());
+                    showGraus(no.getFilhos().get(i));
+                }
+            }
+        }
+    }
 
     public int getProfundidade(ArvoreGenerica<T> Arvore, GenericNode<T> no) {
         if (Arvore.isRoot(no)) {
