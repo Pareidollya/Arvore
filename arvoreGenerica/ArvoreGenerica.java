@@ -119,6 +119,21 @@ public class ArvoreGenerica<T> {
             }
         }
     }
+    public void showSubarvores(GenericNode<T> no){ 
+        if (no == null) {
+            no = this.raiz;
+        }
+        internosList = getInternosList(no);
+        System.out.println(internosList);
+        for (int i = 0; i < internosList.size(); i++) {
+
+            System.out.println("\nSub-arvore " + i );
+            System.out.println(internosList.get(i).getValor());
+            showTree(internosList.get(i));
+        }
+        this.clear();
+        System.out.println("");
+    }
     public void showAlturas(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
         if (no == null) {
             no = this.raiz;
@@ -195,7 +210,6 @@ public class ArvoreGenerica<T> {
     }
 
     ArrayList<GenericNode<T>> internosList = new ArrayList<>();
-
     public ArrayList<GenericNode<T>> getInternosList(GenericNode<T> no) {
         if (no == null) {
             no = this.raiz;
@@ -311,7 +325,6 @@ public class ArvoreGenerica<T> {
     }
 
     public void showNodeInfo(T valor) { // imprimir informações de um nó de valor x
-        
         GenericNode<T> node = buscar(valor, null);
         System.out.println("------ \nINFORMAÇÕES DO NÓ:");
         System.out.println("Valor: " + node.getValor());
@@ -319,10 +332,12 @@ public class ArvoreGenerica<T> {
             System.out.println("Tipo: Nó Raiz");
         }else if(node.getGrau() == 0){
             System.out.println("Tipo: Nó Folha");
+            System.out.println("Nó pai: " + node.getPai().getValor());
         }else{
             System.out.println("Tipo: Nó Interno");
+            System.out.println("Nó pai: " + node.getPai().getValor());
         }
-        System.out.println("Nó pai: " + node.getPai().getValor());
+        
         System.out.print("Filhos: ");
         if(node.getGrau() > 0){
             for (int i = 0; i < node.getFilhos().size(); i++) {
@@ -367,6 +382,7 @@ public class ArvoreGenerica<T> {
 
     }
 
+    
     // funçoes para binaria
     public boolean hasLeft(GenericNode<T> no) {
         if (no == null) {
