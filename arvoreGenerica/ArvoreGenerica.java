@@ -86,17 +86,17 @@ public class ArvoreGenerica<T> {
             if (hasLeft(noPai) == false) {
                 GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
                 noPai.getFilhos().add(0, noFilho);
-                System.out.println("Novo filho " + novoValor + " adicionado a esquerda do nó " + no);
+                System.out.println("> Novo filho " + novoValor + " adicionado a esquerda do nó " + no);
             } else if (hasRight(noPai) == false) {
                 GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
                 noPai.getFilhos().add(1, noFilho);
-                System.out.println("Novo filho " + novoValor + " adicionado a direita do nó " + no);
+                System.out.println("> Novo filho " + novoValor + " adicionado a direita do nó " + no);
             }
             // noPai.addFilho(noFilho);
             // verificar e dar prioridade pra
 
         } else {
-            System.out.println("Não é possível inserir um novo filho em " + no);
+            System.out.println("> Não é possível inserir um novo filho em " + no);
         }
     }
 
@@ -115,6 +115,44 @@ public class ArvoreGenerica<T> {
                     }
                     System.out.println(no.getFilhos().get(i).getValor());
                     showTree(no.getFilhos().get(i));
+                }
+            }
+        }
+    }
+    public void showAlturas(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
+        if (no == null) {
+            no = this.raiz;
+        }
+        int maxCount = no.getFilhos().size();
+        if (maxCount > 0) {
+            for (int i = 0; i < maxCount; i++) {
+                if (no.getFilhos().size() > 0 && no.getFilhos().get(i) != null) { // || no.getFilhos().get(i).getValor()
+                                                                                  // == null
+                    System.out.print("  ");
+                    for (int j = 0; j < no.getProfundidade(); j++) {
+                        System.out.print("  ");
+                    }
+                    System.out.println(getAlturaNode(no.getFilhos().get(i)));
+                    showAlturas(no.getFilhos().get(i));
+                }
+            }
+        }
+    }
+    public void showProfundidades(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
+        if (no == null) {
+            no = this.raiz;
+        }
+        int maxCount = no.getFilhos().size();
+        if (maxCount > 0) {
+            for (int i = 0; i < maxCount; i++) {
+                if (no.getFilhos().size() > 0 && no.getFilhos().get(i) != null) { // || no.getFilhos().get(i).getValor()
+                                                                                  // == null
+                    System.out.print("  ");
+                    for (int j = 0; j < no.getProfundidade(); j++) {
+                        System.out.print("  ");
+                    }
+                    System.out.println(getProfundidadeFromNode(this.raiz, no)+1);
+                    showProfundidades(no.getFilhos().get(i));
                 }
             }
         }
@@ -273,6 +311,7 @@ public class ArvoreGenerica<T> {
     }
 
     public void showNodeInfo(T valor) { // imprimir informações de um nó de valor x
+        
         GenericNode<T> node = buscar(valor, null);
         System.out.println("------ \nINFORMAÇÕES DO NÓ:");
         System.out.println("Valor: " + node.getValor());
@@ -306,6 +345,7 @@ public class ArvoreGenerica<T> {
         }
         System.out.print("\n------\n");
     }
+    
     public void removeNode(T valor){
         GenericNode<T> node = buscar(valor, null);
         GenericNode<T> nodePai = node.getPai();
@@ -315,6 +355,16 @@ public class ArvoreGenerica<T> {
         nodePai.getFilhos().remove(node);
 
         System.out.println("Nó removido da árvore.");
+    }
+    
+    public void clearTree(GenericNode<T> no){ //caso passe um no ele limpará sub arvore
+        if (no == null) {
+            no = this.raiz;
+        }
+        no.getFilhos().clear();
+
+        System.out.println("(sub)árvore limpa.");
+
     }
 
     // funçoes para binaria

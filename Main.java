@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -7,8 +8,8 @@ import arvoreGenerica.GenericNode;
 
 class Main {
   public static void main(String[] args) {
-    teste a = new teste("aasd");
-    a.setName("kkkk");
+    // teste a = new teste("aasd");
+    // a.setName("kkkk");
 
     String[] array = new String[10];
     System.out.println(array.length);
@@ -24,9 +25,9 @@ class Main {
     //     lista.remove(i);
     //   }
     // }
-    ArrayList<teste> listaTeste = new ArrayList<>();
-    listaTeste.add(a);
-    listaTeste.remove(0);
+    // ArrayList<teste> listaTeste = new ArrayList<>();
+    // // listaTeste.add(a);
+    // listaTeste.remove(0);
 
     
     // lista.set(0, null);
@@ -37,12 +38,9 @@ class Main {
     
     // System.out.println(listaTeste);
     System.out.println("\nArvore Genérica\n===");
-      String A = "";
+
     // System.out.print("Filhos:");
-    for (int i = 0; i < lista.size(); i++) {
-      A = A + "  ("+i+") "+lista.get(i) + ";";
-      // System.out.print("("+i+") "+lista.get(i) + ";  ");
-    }
+
     // System.out.println(A);
 
     // String testeInput = JOptionPane.showInputDialog("insira um valor");
@@ -50,7 +48,6 @@ class Main {
     // System.out.println(testeInputInt);
 
     //implementação da arvore generica
-    int option;
     
     // int valorRaiz = Integer.parseInt(JOptionPane.showInputDialog("Insira o valor da raiz!"));
     ArvoreGenerica<Integer> arvore = new ArvoreGenerica<Integer>(2);
@@ -75,12 +72,6 @@ class Main {
     System.out.println("saida " + arvore.buscar(1, arvore.getRaiz()));
 
     // System.out.println(arvore.buscar(1, arvore.getRaiz()));
-    A = "";
-    System.out.print("Filhos de 0: ");
-    for (int i = 0; i < arvore.getRaiz().getFilhos().size(); i++) {
-      A = A + "  ("+i+") "+ arvore.getRaiz().getFilhos().get(i) + ";";
-      System.out.print("("+i+") "+arvore.getRaiz().getFilhos().get(i).getValor() + ";  ");
-    }
 
     // System.out.println(arvore.buscar(1, arvore.getRaiz()).getValor());
     // System.out.println(arvore.buscar(1, arvore.getRaiz()).getValor());
@@ -164,8 +155,73 @@ class Main {
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
     arvore.showNodeInfo(102);
 
+    arvore.showAlturas(null);
+    arvore.showProfundidades(null);
+
+    // arvore.clearTree(null);
+    // arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
+
+
+    // ArvoreGenerica<Integer> a = new ArvoreGenerica<Integer>();
+    // Scanner optionIn = new Scanner(System.in);
+    Scanner s = new Scanner(System.in);
     
+    int value;  
+    System.out.print("Insira o valor da raiz: ");
+    value = s.nextInt();
+    
+    ArvoreGenerica<Integer> a = new ArvoreGenerica<Integer>(value);
+      
+    System.out.println(value);
+    // while(true){
+    //   System.out.println("OPÇÕES:\n --Funções de árvore-- \n");
+    //   System.out.println("-1 = parar");
+    //   System.out.println("0 = Imprimir arvore");
+    //   System.out.println("0 = Grau da arvore");
 
+    // }
+    System.out.println("Gravar nós na árvore (inserir -1 pra parar)");
+    int v1;
+    int v2;
+    while(true){
+      
 
+      System.out.print("Nó que deseja inserir o filho: ");
+      v1 = s.nextInt();
+      if(v1 == -1){
+        break;
+      }
+
+      System.out.print("Valor do novo nó: ");
+      v2 = s.nextInt();
+      if(v2 == -1){
+        break;
+      }
+      System.out.println("");
+      a.inserirNode(v1, v2);
+      System.out.println("");
+    }
+    int option;
+    while(true){
+          System.out.println("OPÇÕES:\n --Funções de árvore-- \n");
+          System.out.println("-1 = parar");
+          System.out.println("0 = Imprimir arvore");
+          System.out.println("1 = Nós folhas");
+          System.out.println("2 = Nós internos");
+          System.out.println("3 = Maior Grau da arvore");
+          System.out.println("4 = Altura");
+          System.out.println("5 = Profundidade");
+          System.out.println("7 = Exibir informações de um nó");
+          System.out.println("8 = Exibir altura dos nós");
+          System.out.println("8 = Exibir profundidade dos nós");
+          System.out.println("8 = Exibir sub-árvores");
+
+          
+
+          
+    }
+ 
   }
+  
+   
 }
