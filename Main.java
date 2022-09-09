@@ -143,5 +143,10 @@ class Main {
     arvore.clear();
     System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(102, arvore.getRaiz())));
     arvore.clear();
+
+    arvore.convertToBinary(arvore.buscar(7, null));
+    arvore.showTree(arvore.buscar(2, null));
+
+    
   }
 }

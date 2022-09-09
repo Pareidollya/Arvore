@@ -54,10 +54,8 @@ public class ArvoreGenerica<T> {
                         buscar(valor, no.getFilhos().get(i));
                     } else {
                         noResultado = no.getFilhos().get(i);
-
                     }
                 }
-
             }
         }
         try {
@@ -190,7 +188,8 @@ public class ArvoreGenerica<T> {
     }
 
     // caso usar a raiz, irá retornar altura da arvore
-    public int getProfundidadeFromNode(GenericNode<T> noAlvo, GenericNode<T> noFilho) { // retornar profundidade de umno}
+    public int getProfundidadeFromNode(GenericNode<T> noAlvo, GenericNode<T> noFilho) { // retornar profundidade de
+                                                                                        // umno}
         if (noFilho.isRoot()) {
             return 0;
         }
@@ -233,7 +232,7 @@ public class ArvoreGenerica<T> {
                         maxGrau = no.getFilhos().get(i).getGrau();
                     }
                 }
-                
+
             }
         }
         return maxGrau;
@@ -344,6 +343,46 @@ public class ArvoreGenerica<T> {
         return noPai.getFilhos().get(1);
         // return no.getFilhos().get(no.getFilhos().size() - 1);
     }
+
+    public void convertToBinary(GenericNode<T> no){
+        if (no == null) {
+            no = this.raiz;
+        }
+        int maxCount = no.getFilhos().size();
+
+        if (maxCount > 0) {
+            for (int i = 0; i < maxCount; i++) {
+                if (no.getFilhos().size() > 2 && no.getFilhos().get(i) != null) { 
+                    for (int j = 2; j < no.getFilhos().size(); j++) {
+                       no.getFilhos().remove(j); 
+                }
+                convertToBinary(no.getFilhos().get(i));
+            }
+        }
+    }
+}
+
+    // if(maxCount == 0){
+    // no.getFilhos().add(null);
+    // no.getFilhos().add(null);
+    // }
+    // if(maxCount == 1){
+    // no.getFilhos().add(null);
+    // convertToBinary(no.getFilhos().get(0));
+    // }
+    // if (maxCount > 2) {
+    // for (int i = 0; i < maxCount; i++) {
+    // if (no.getFilhos().get(i) != null) {
+    // // System.out.print(" ");
+    // for (int j = 2; j < no.getFilhos().size(); j++) {
+    // no.getFilhos().remove(j);
+    // System.out.println("cusasds");
+    // }
+    // // System.out.println(no.getFilhos().get(i).getValor());
+    // convertToBinary(no.getFilhos().get(i));
+    // }
+    // }
+    // }
 
     public void clear() { // limpar variaveis auxiliares para evitar bugs (utilizar no metodo main)
         folhas.clear();
