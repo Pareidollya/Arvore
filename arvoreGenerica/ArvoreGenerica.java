@@ -231,8 +231,14 @@ public class ArvoreGenerica<T> {
         }
     }
 
-    ArrayList<GenericNode<T>> folhas = new ArrayList<>();
     public ArrayList<GenericNode<T>> getFolhas(GenericNode<T> no) {
+        ArrayList<GenericNode<T>> folhas = new ArrayList<>();
+        folhas = returnFolhas(no, folhas);
+        return folhas;
+    }
+
+    ArrayList<GenericNode<T>> folhas = new ArrayList<>();
+    public ArrayList<GenericNode<T>> returnFolhas(GenericNode<T> no,  ArrayList<GenericNode<T>> folhas) {
         if (no == null) {
             no = this.raiz;
         }
@@ -244,7 +250,7 @@ public class ArvoreGenerica<T> {
                 if (no.getFilhos().get(i) != null) {
 
                     if (no.getFilhos().size() > 0) { // || no.getFilhos().get(i).getValor() == null
-                        getFolhas(no.getFilhos().get(i));
+                        returnFolhas(no.getFilhos().get(i), folhas);
                     }
                 }
                 if (no.getFilhos().size() >= 2 && hasLeft(no) == false && hasRight(no) == false
@@ -613,9 +619,9 @@ public class ArvoreGenerica<T> {
     // }
 
     public void clear() { // limpar variaveis auxiliares para evitar bugs (utilizar no metodo main)
-        folhas.clear();
+        // folhas.clear();
         // internosList.clear();
-        noResultado = null;
+        // noResultado = null
         // altura_arvore = 0;
 
     }

@@ -45,27 +45,16 @@ class Main {
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
 
     arvore.buscar(2, arvore.getRaiz());
-
     System.out.println(arvore.isRoot(arvore.buscar(7, arvore.getRaiz())));
-
     System.out.println("folhas aq: " + arvore.getFolhas(null)); // retornar folhas da arvore ou do nó inserido
-
     System.out.println("altura da arvore: " + arvore.getAlturaThree()); // altura da arvore
-
-    arvore.clear();
     System.out.println("folhas aq: " + arvore.getFolhas(arvore.buscar(2, arvore.getRaiz())));
-    arvore.clear();
     System.out.println("profundidade de nó: " + arvore.getProfundidade(null, arvore.buscar(2, arvore.getRaiz())));
     System.out.println("altura de 5 (forced): "
         + arvore.getProfundidadeFromNode(arvore.buscar(5, arvore.getRaiz()), arvore.buscar(4, arvore.getRaiz())));
     System.out.println("folha do nó 5: " + arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())).get(0).getValor());
-
-    arvore.clear();
     System.out.println("altura de nó: " + arvore.getAlturaNode(arvore.buscar(2, arvore.getRaiz())));
-    arvore.clear();
-
     System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(2, arvore.getRaiz())));
-
     arvore.showFolhas(null);
     arvore.showInternos(null);
     arvore.showSubarvores(null);
@@ -77,45 +66,30 @@ class Main {
     // arvore.addRight(100, 101);
 
     System.out.println(arvore.buscar(100, null).getFilhos());
-
     arvore.inserirNode(101, 102);
     arvore.inserirNode(101, 103);
-
     arvore.buscar(103, null).getFilhos().add(null);
     arvore.buscar(103, null).getFilhos().add(null);
     arvore.inserirNode(101, 104);
-
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
     System.out.println("folhas aq: " + arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())));
-    arvore.clear();
+
     // System.out.println("profundidade de nó: " + arvore.getProfundidade(arvore, arvore.buscar(103, arvore.getRaiz())));
-    arvore.clear();
     System.out.println("altura de x ate y: "
         + arvore.getProfundidadeFromNode(arvore.buscar(2, arvore.getRaiz()), arvore.buscar(103, arvore.getRaiz())));
-    arvore.clear();
     System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(2, arvore.getRaiz())));
-    arvore.clear();
-
     arvore.convertToBinary(arvore.buscar(2, null));
     arvore.showTree(arvore.buscar(2, null));
-
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
     System.out.println("folhas aq: " + arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())));
-    arvore.clear();
     System.out.println("profundidade de nó: " + arvore.getProfundidade(null, arvore.buscar(103, arvore.getRaiz())));
-    arvore.clear();
     System.out.println("altura de x ate y: "
         + arvore.getProfundidadeFromNode(arvore.buscar(2, arvore.getRaiz()), arvore.buscar(103, arvore.getRaiz())));
-    arvore.clear();
     System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(2, arvore.getRaiz())));
-    arvore.clear();
-
     arvore.showNodeInfo(103);
-
     arvore.removeNode(103);
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
     arvore.showNodeInfo(2);
-
     arvore.showAlturas(null);
     arvore.showProfundidades(null);
     arvore.showSubarvores(null);
@@ -123,6 +97,7 @@ class Main {
     //TESTES BINARIA TRUE
 
     System.out.println("TESTES BINARIA TRUE\n");
+
     ArvoreGenerica<Integer> arvoreBinaria2 = new ArvoreGenerica<Integer>(0);
     arvoreBinaria2.setType(2);
     arvoreBinaria2.addLeft(0, 1);
@@ -134,11 +109,7 @@ class Main {
     System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
     arvoreBinaria2.showTree(arvoreBinaria2.getRaiz());
 
-    
-
     System.out.println("\nFIM TESTE BINARIA\n");
-
-
 
     //INICIO MAIN
     Scanner s = new Scanner(System.in);
@@ -343,8 +314,6 @@ class Main {
           break;
 
       }
-      a.clear();
-
     }
 
   }
