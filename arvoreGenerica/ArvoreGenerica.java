@@ -67,10 +67,10 @@ public class ArvoreGenerica<T> {
                 noResultado = no;   
             }
             if(no.hasLeft()){
-                if(no.getLeft().getValor() == valor) {noResultado = no.getLeft();}
+                if(no.getLeft().getValor() == valor) noResultado = no.getLeft();
                 else buscar(valor, no.getLeft());
 
-            }else if(no.hasRight()){
+            }if(no.hasRight()){
                 if(no.getRight().getValor() == valor) noResultado = no.getRight();
                 else buscar(valor, no.getRight());
             }
@@ -163,12 +163,9 @@ public class ArvoreGenerica<T> {
         }
         ArrayList<GenericNode<T>> internosList = getInternosList(no);
         for (int i = 0; i < internosList.size(); i++) {
-            
-                System.out.println("\nSub-arvore " + i );
+                System.out.println("\nSub-arvore " + (i + 1) );
                 System.out.println(internosList.get(i).getValor());
                 showTree(internosList.get(i));
-         
-            
         }
         this.clear();
         System.out.println("");
@@ -237,34 +234,49 @@ public class ArvoreGenerica<T> {
         return folhas;
     }
 
-    ArrayList<GenericNode<T>> folhas = new ArrayList<>();
+    //  folhas = new ArrayList<>();
     public ArrayList<GenericNode<T>> returnFolhas(GenericNode<T> no,  ArrayList<GenericNode<T>> folhas) {
         if (no == null) {
             no = this.raiz;
         }
 
-        int maxCount = no.getFilhos().size();
-        if (maxCount > 0) {
-
-            for (int i = 0; i < maxCount; i++) {
-                if (no.getFilhos().get(i) != null) {
-
-                    if (no.getFilhos().size() > 0) { // || no.getFilhos().get(i).getValor() == null
-                        returnFolhas(no.getFilhos().get(i), folhas);
+        if(this.type <= 1){
+            int maxCount = no.getFilhos().size();
+            if (maxCount > 0) {
+                for (int i = 0; i < maxCount; i++) {
+                    if (no.getFilhos().get(i) != null) {
+                        if (no.getFilhos().size() > 0) { // || no.getFilhos().get(i).getValor() == null
+                            returnFolhas(no.getFilhos().get(i), folhas);
+                        }
+                    }
+                    if (no.getFilhos().size() >= 2 && hasLeft(no) == false && hasRight(no) == false
+                            && folhas.contains(no) == false) {
+                        folhas.add(no);
                     }
                 }
-                if (no.getFilhos().size() >= 2 && hasLeft(no) == false && hasRight(no) == false
-                        && folhas.contains(no) == false) {
-                    folhas.add(no);
-                }
+            } else {
+                folhas.add(no);
             }
-        } else {
-            folhas.add(no);
+
+        }if(this.type > 1){
+            if(no.getGrauBinary() > 0){
+                if(no.hasLeft()){
+                    returnFolhas(no.getLeft(), folhas);
+                }
+                if(no.hasRight()){
+                    returnFolhas(no.getRight(), folhas);
+                }
+            }else{
+                folhas.add(no);
+            }
         }
         return folhas;
     }
     
     public ArrayList<GenericNode<T>> getInternosList(GenericNode<T> no){
+        if (no == null) {
+            no = this.raiz;
+        }
         ArrayList<GenericNode<T>> internosList = new ArrayList<>();
         internosList = returnInternosList(no, internosList);
         return internosList;
@@ -288,10 +300,19 @@ public class ArvoreGenerica<T> {
                     
                 }
             }
-        }else if (this.type > 1){
-            
+        }if (this.type > 1){
+            if(no.getGrauBinary() > 0){
+                // System.out.println("grau: " + no.getGrauBinary());
+                if (no != this.raiz) {
+                    internosList.add(no);
+                }
+                if(no.hasLeft()){
+                    returnInternosList(no.getLeft(), internosList);
+                }if(no.hasRight()){
+                    returnInternosList(no.getRight(), internosList);
+                }
+            }
         }
-        
         return internosList;
     }
 
@@ -304,7 +325,6 @@ public class ArvoreGenerica<T> {
                 altura_arvore = folhasList.get(i).getProfundidade();
             }
         }
-        clear();
         return altura_arvore;
     }
 
@@ -335,7 +355,7 @@ public class ArvoreGenerica<T> {
 
     public int getAlturaNode(GenericNode<T> no) { // atravez das folhas de sua sub árvore retornar a altura do nó
                                                   // especificado.
-        ArrayList<GenericNode<T>> folhasList = this.getFolhas(no);
+        ArrayList<GenericNode<T>> folhasList = getFolhas(no);
         int maxCount = folhasList.size();
 
         int aux = 0;
@@ -347,8 +367,6 @@ public class ArvoreGenerica<T> {
                 }
             }
         }
-
-        clear();
         return altura;
     }
 
@@ -390,7 +408,7 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             no = this.raiz;
         }
-        folhas = getFolhas(no);
+        ArrayList<GenericNode<T>> folhas = getFolhas(no);
         if (folhas.size() > 0) {
             System.out.print("\nNós Folhas de " + no.getValor() + "(" + folhas.size() + "): ");
             for (int i = 0; i < folhas.size(); i++) {

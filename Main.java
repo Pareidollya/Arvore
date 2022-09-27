@@ -103,12 +103,24 @@ class Main {
     arvoreBinaria2.addLeft(0, 1);
     arvoreBinaria2.addRight(0, 2);
     arvoreBinaria2.addLeft(1, 3);
+    arvoreBinaria2.addLeft(2, 4);
+    arvoreBinaria2.addRight(4, 6);
+    // System.out.println("busasd " +  arvoreBinaria2.buscar(2, null));
     // System.out.println("algo aki " + arvoreBinaria2.getRaiz().getRight());
 
     //showArvore
     System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
     arvoreBinaria2.showTree(arvoreBinaria2.getRaiz());
 
+    //getInternos
+    System.out.println("internos: " + arvoreBinaria2.getInternosList(null));
+    System.out.println("subarvores");
+    arvoreBinaria2.showSubarvores(null);
+
+    //getFolhas
+    System.out.println("folhas: " + arvoreBinaria2.getFolhas(null));
+    //profundidade 
+    System.out.println("profundiade raiz: " + arvoreBinaria2.getAlturaNode(arvoreBinaria2.buscar(1, null)));
     System.out.println("\nFIM TESTE BINARIA\n");
 
     //INICIO MAIN
