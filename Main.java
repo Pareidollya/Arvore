@@ -92,36 +92,52 @@ class Main {
     arvore.showNodeInfo(2);
     arvore.showAlturas(null);
     arvore.showProfundidades(null);
-    arvore.showSubarvores(null);
+    arvore.showGraus(null);
+    // arvore.showSubarvores(null);
 
     //TESTES BINARIA TRUE
 
-    System.out.println("TESTES BINARIA TRUE\n");
+      System.out.println("TESTES BINARIA TRUE\n");
 
-    ArvoreGenerica<Integer> arvoreBinaria2 = new ArvoreGenerica<Integer>(0);
-    arvoreBinaria2.setType(2);
-    arvoreBinaria2.addLeft(0, 1);
-    arvoreBinaria2.addRight(0, 2);
-    arvoreBinaria2.addLeft(1, 3);
-    arvoreBinaria2.addLeft(2, 4);
-    arvoreBinaria2.addRight(4, 6);
-    // System.out.println("busasd " +  arvoreBinaria2.buscar(2, null));
-    // System.out.println("algo aki " + arvoreBinaria2.getRaiz().getRight());
+      ArvoreGenerica<Integer> arvoreBinaria2 = new ArvoreGenerica<Integer>(0);
+      arvoreBinaria2.setType(2);
+      arvoreBinaria2.addLeft(0, 1);
+      arvoreBinaria2.addRight(0, 2);
+      arvoreBinaria2.addLeft(1, 3);
+      arvoreBinaria2.addLeft(2, 4);
+      arvoreBinaria2.addRight(4, 6);
+      arvoreBinaria2.addLeft(4, 8);
+      // System.out.println("busasd " +  arvoreBinaria2.buscar(2, null));
+      // System.out.println("algo aki " + arvoreBinaria2.getRaiz().getRight());
 
-    //showArvore
-    System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
-    arvoreBinaria2.showTree(arvoreBinaria2.getRaiz());
+      //showArvore
+      System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
+      arvoreBinaria2.showTree(arvoreBinaria2.getRaiz());
 
-    //getInternos
-    System.out.println("internos: " + arvoreBinaria2.getInternosList(null));
-    System.out.println("subarvores");
-    arvoreBinaria2.showSubarvores(null);
+      //getInternos
+      System.out.println("internos: " + arvoreBinaria2.getInternosList(null));
+      System.out.println("subarvores");
+      // arvoreBinaria2.showSubarvores(null);
 
-    //getFolhas
-    System.out.println("folhas: " + arvoreBinaria2.getFolhas(null));
-    //profundidade 
-    System.out.println("profundiade raiz: " + arvoreBinaria2.getAlturaNode(arvoreBinaria2.buscar(1, null)));
-    System.out.println("\nFIM TESTE BINARIA\n");
+      //getFolhas
+      System.out.println("folhas: " + arvoreBinaria2.getFolhas(null));
+      //profundidade / altura
+      System.out.println("altura: " + arvoreBinaria2.getAlturaNode(arvoreBinaria2.buscar(0, null)));
+      
+      System.out.println("profundidade " + arvoreBinaria2.getProfundidadeFromNode(arvoreBinaria2.getRaiz(), arvoreBinaria2.buscar(1, null)));
+      System.out.println("grau " + arvoreBinaria2.buscar(2, null).getGrauBinary());
+      System.out.println("altura da arvore " + arvoreBinaria2.getAlturaThree());
+      arvoreBinaria2.showInternos(null);
+      arvoreBinaria2.showFolhas(null);
+      System.out.println("profundidades");
+      arvoreBinaria2.showProfundidades(null);
+      System.out.println("alturas");
+      arvoreBinaria2.showAlturas(null);
+      System.out.println("arvore graus");
+      arvoreBinaria2.showGraus(null);
+
+      
+      System.out.println("\nFIM TESTE BINARIA\n");
 
     //INICIO MAIN
     Scanner s = new Scanner(System.in);
