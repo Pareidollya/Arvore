@@ -689,6 +689,27 @@ public class ArvoreGenerica<T> {
             }
         }
     }
+    public void convertTrueBinary(GenericNode<T> no) {
+        if (no == null) {
+            no = this.raiz;
+        }
+        this.type = 2;
+        int maxCount = no.getFilhos().size();
+        if (maxCount > 0) {
+            for (int i = 0; i < maxCount; i++) {
+                if (no.getFilhos().size() == 1 && no.getFilhos().get(i) != null) {
+                    //priorizar filho esquerdo
+                    no.setLeft(no.getFilhos().get(0));      
+                }else{  
+                    //primeiro valor da lista será esquerdo, ultimo será direito
+                    no.setLeft(no.getFilhos().get(0));
+                    no.setRight(no.getFilhos().get(no.getFilhos().size() - 1));
+                }
+                convertToBinary(no.getFilhos().get(i));
+            }
+        }
+        System.out.println("Agora esta arvore é binária...\n");
+    }
 
     // if(maxCount == 0){
     // no.getFilhos().add(null);

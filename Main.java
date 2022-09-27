@@ -78,7 +78,9 @@ class Main {
     System.out.println("altura de x ate y: "
         + arvore.getProfundidadeFromNode(arvore.buscar(2, arvore.getRaiz()), arvore.buscar(103, arvore.getRaiz())));
     System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(2, arvore.getRaiz())));
-    arvore.convertToBinary(arvore.buscar(2, null));
+    // arvore.convertToBinary(arvore.buscar(2, null));
+    arvore.convertTrueBinary(null);
+    
     arvore.showTree(arvore.buscar(2, null));
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
     System.out.println("folhas aq: " + arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())));
@@ -94,6 +96,8 @@ class Main {
     arvore.showProfundidades(null);
     arvore.showGraus(null);
     // arvore.showSubarvores(null);
+    
+
 
     //TESTES BINARIA TRUE
 
