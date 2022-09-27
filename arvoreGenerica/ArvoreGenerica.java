@@ -161,8 +161,7 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             no = this.raiz;
         }
-        internosList = getInternosList(no);
-        System.out.println(internosList);
+        ArrayList<GenericNode<T>> internosList = getInternosList(no);
         for (int i = 0; i < internosList.size(); i++) {
             
                 System.out.println("\nSub-arvore " + i );
@@ -258,9 +257,15 @@ public class ArvoreGenerica<T> {
         }
         return folhas;
     }
+    
+    public ArrayList<GenericNode<T>> getInternosList(GenericNode<T> no){
+        ArrayList<GenericNode<T>> internosList = new ArrayList<>();
+        internosList = returnInternosList(no, internosList);
+        return internosList;
+    }
 
-    ArrayList<GenericNode<T>> internosList = new ArrayList<>();
-    public ArrayList<GenericNode<T>> getInternosList(GenericNode<T> no) {
+    
+    public ArrayList<GenericNode<T>> returnInternosList(GenericNode<T> no, ArrayList<GenericNode<T>> internosList) {
         if (no == null) {
             no = this.raiz;
         }
@@ -272,7 +277,7 @@ public class ArvoreGenerica<T> {
                 }
                 for (int i = 0; i < maxCount; i++) {
                     if(no.getFilhos().get(i) != null){
-                        getInternosList(no.getFilhos().get(i));
+                        returnInternosList(no.getFilhos().get(i), internosList);
                     }
                     
                 }
@@ -364,7 +369,7 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             no = this.raiz;
         }
-        internosList = getInternosList(no);
+        ArrayList<GenericNode<T>> internosList = getInternosList(no);
         if (internosList.size() > 0) {
             System.out.print("\nNós Internos de " + no.getValor() + "(" + internosList.size() + "): ");
             for (int i = 0; i < internosList.size(); i++) {
@@ -373,8 +378,6 @@ public class ArvoreGenerica<T> {
         } else {
             System.out.println("\nEsta (sub)arvore não possui nós internos.");
         }
-
-        clear();
     }
 
     public void showFolhas(GenericNode<T> no) { // imprimir lista de folhas de uma (sub)arvore
@@ -611,7 +614,7 @@ public class ArvoreGenerica<T> {
 
     public void clear() { // limpar variaveis auxiliares para evitar bugs (utilizar no metodo main)
         folhas.clear();
-        internosList.clear();
+        // internosList.clear();
         noResultado = null;
         // altura_arvore = 0;
 
