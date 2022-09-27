@@ -7,7 +7,7 @@ public class ArvoreGenerica<T> {
     private int type; // 0 para generica, 1 para binaria
 
     public ArvoreGenerica() {
-        this.type = 0; //0 = generica, 1 = binaria, 2 = binaria de busca
+        this.type = 0; //0 e 1 = generica / binaria, 2 = binaria, 3 = binaria de busca
         this.raiz = null;
     }
 
@@ -48,21 +48,30 @@ public class ArvoreGenerica<T> {
             noResultado = this.raiz;
         }
 
-        if(this.type == 0){
-
-        }
-        int maxCount = no.getFilhos().size();
-        if (maxCount > 0) {
-            for (int i = 0; i < maxCount; i++) {
-                if (no.getFilhos().get(i) != null) {
-                    if (no.getFilhos().get(i).getValor() != valor) { // || no.getFilhos().get(i).getValor() == null
-                        buscar(valor, no.getFilhos().get(i));
-                    } else {
-                        noResultado = no.getFilhos().get(i);
+        if(this.type == 0 || this.type == 1){
+            int maxCount = no.getFilhos().size();
+            if (maxCount > 0) {
+                for (int i = 0; i < maxCount; i++) {
+                    if (no.getFilhos().get(i) != null) {
+                        if (no.getFilhos().get(i).getValor() != valor) { // || no.getFilhos().get(i).getValor() == null
+                            buscar(valor, no.getFilhos().get(i));
+                        } else {
+                            noResultado = no.getFilhos().get(i);
+                        }
                     }
                 }
             }
         }
+        if(this.type == 2 ){
+            if(no.hasLeft()){
+                if(no.getLeft().getValor() == valor) noResultado = no.getLeft();
+                else buscar(valor, no.getLeft());
+            }else if(no.hasRight()){
+                if(no.getRight().getValor() == valor) noResultado = no.getRight();
+                else buscar(valor, no.getRight());
+            }
+        }
+        
         try {
             if (noResultado.getValor() != valor) {
                 noResultado = null;
@@ -478,8 +487,8 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             noPai = this.raiz;
         }
-        if (hasRight(noPai) != true) {
-            GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
+        GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
+        if (hasRight(noPai) != true && this.type != 2)  {
             if(hasLeft(noPai) != true && noPai.getFilhos().size() == 0 ){
                 noPai.addFilho(null);
                 noPai.addFilho(noFilho);
@@ -488,8 +497,14 @@ public class ArvoreGenerica<T> {
             
             noPai.getFilhos().remove(1);
             noPai.getFilhos().add(1, noFilho);
+            return noPai.getFilhos().get(1);
+        }else{
+            if(noPai.hasLeft()){
+                noPai.setRight(noFilho);
+            }
+            return noPai.getRight();
         }
-        return noPai.getFilhos().get(1);
+        
         // return no.getFilhos().get(no.getFilhos().size() - 1);
     }
 

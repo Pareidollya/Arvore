@@ -119,7 +119,15 @@ public class GenericNode<T> {
     }
 
     //binarios
-    
+    public boolean hasLeft() {
+        if(this.left != null) return true;
+        else return false;
+    }
+    public boolean hasRight() {
+        if(this.right != null) return true;
+        else return false;
+    }
+
     
     //retornar grau do nó
     public int getGrau() { 
