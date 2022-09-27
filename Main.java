@@ -20,37 +20,9 @@ class Main {
     lista.add(2);
     lista.add(3);
 
-    // for (int i = 0; i < lista.size(); i++) { metodo para remover as outras
-    // posições
-    // if(i > 1){
-    // lista.remove(i);
-    // }
-    // }
-    // ArrayList<teste> listaTeste = new ArrayList<>();
-    // // listaTeste.add(a);
-    // listaTeste.remove(0);
 
-    // lista.set(0, null);
-
-    // System.out.println(lista.size());
-
-    // System.out.println(a.getName());
-
-    // System.out.println(listaTeste);
     System.out.println("\nArvore Genérica\n===");
 
-    // System.out.print("Filhos:");
-
-    // System.out.println(A);
-
-    // String testeInput = JOptionPane.showInputDialog("insira um valor");
-    // int testeInputInt = Integer.parseInt(testeInput);
-    // System.out.println(testeInputInt);
-
-    // implementação da arvore generica
-
-    // int valorRaiz = Integer.parseInt(JOptionPane.showInputDialog("Insira o valor
-    // da raiz!"));
     ArvoreGenerica<Integer> arvore = new ArvoreGenerica<Integer>(2);
 
     arvore.inserirNode(2, 7);
@@ -66,15 +38,8 @@ class Main {
 
     System.out.println("saida " + arvore.buscar(3, arvore.getRaiz()).getProfundidade());
 
-    // for (int i = 0; i < 5; i++) {
-    // System.out.print("5");
-    // }
     System.out.println("saida " + arvore.buscar(1, arvore.getRaiz()));
 
-    // System.out.println(arvore.buscar(1, arvore.getRaiz()));
-
-    // System.out.println(arvore.buscar(1, arvore.getRaiz()).getValor());
-    // System.out.println(arvore.buscar(1, arvore.getRaiz()).getValor());
     System.out.println("\n" + arvore.buscar(2, arvore.getRaiz()).getValor());
 
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
@@ -82,9 +47,6 @@ class Main {
     arvore.buscar(2, arvore.getRaiz());
 
     System.out.println(arvore.isRoot(arvore.buscar(7, arvore.getRaiz())));
-
-    // System.out.println(arvore.buscar(3, arvore.getRaiz()).getProfundidade());
-    // arvore.inserirNode(4, 20);
 
     System.out.println("folhas aq: " + arvore.getFolhas(null)); // retornar folhas da arvore ou do nó inserido
 
@@ -111,10 +73,8 @@ class Main {
     // TESTES COM NÓS BINARIOS
     arvore.inserirNode(4, 100);
     arvore.buscar(100, null).getFilhos().add(null);
-    arvore.buscar(100, null).getFilhos().add(null);
-    // arvore.setType(1);
-    // arvore.inserirNode(100, 101);
-    arvore.addRight(100, 101);
+    arvore.inserirNode(100, 101);
+    // arvore.addRight(100, 101);
 
     System.out.println(arvore.buscar(100, null).getFilhos());
 
@@ -128,7 +88,7 @@ class Main {
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
     System.out.println("folhas aq: " + arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())));
     arvore.clear();
-    System.out.println("profundidade de nó: " + arvore.getProfundidade(arvore, arvore.buscar(103, arvore.getRaiz())));
+    // System.out.println("profundidade de nó: " + arvore.getProfundidade(arvore, arvore.buscar(103, arvore.getRaiz())));
     arvore.clear();
     System.out.println("altura de x ate y: "
         + arvore.getProfundidadeFromNode(arvore.buscar(2, arvore.getRaiz()), arvore.buscar(103, arvore.getRaiz())));
@@ -159,28 +119,15 @@ class Main {
     arvore.showAlturas(null);
     arvore.showProfundidades(null);
     arvore.showSubarvores(null);
-    // arvore.clearTree(null);
-    // arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
 
-    // ArvoreGenerica<Integer> a = new ArvoreGenerica<Integer>();
-    // Scanner optionIn = new Scanner(System.in);
     Scanner s = new Scanner(System.in);
 
     int value;
 
     System.out.print("Insira o valor da raiz: ");
     value = s.nextInt();
-
     ArvoreGenerica<Integer> a = new ArvoreGenerica<Integer>(value);
-
     System.out.println(value);
-    // while(true){
-    // System.out.println("OPÇÕES:\n --Funções de árvore-- \n");
-    // System.out.println("-1 = parar");
-    // System.out.println("0 = Imprimir arvore");
-    // System.out.println("0 = Grau da arvore");
-
-    // }
     System.out.println("Gravar nós na árvore (inserir -1 pra parar)");
     int v1;
     int v2;
@@ -352,7 +299,6 @@ class Main {
           break;
 
         case 11:
-          
             System.out.print("Insira o nó que deseja remover: ");
             v1 = s.nextInt();
             a.removeNode(v1);

@@ -7,7 +7,7 @@ public class ArvoreGenerica<T> {
     private int type; // 0 para generica, 1 para binaria
 
     public ArvoreGenerica() {
-        this.type = 0;
+        this.type = 0; //0 = generica, 1 = binaria, 2 = binaria de busca
         this.raiz = null;
     }
 
@@ -40,7 +40,6 @@ public class ArvoreGenerica<T> {
     }
 
     GenericNode<T> noResultado = null;
-
     public GenericNode<T> buscar(T valor, GenericNode<T> no) { // retornar um nó pelo seu valor
         if (no == null) {
             no = this.raiz;
@@ -49,6 +48,9 @@ public class ArvoreGenerica<T> {
             noResultado = this.raiz;
         }
 
+        if(this.type == 0){
+
+        }
         int maxCount = no.getFilhos().size();
         if (maxCount > 0) {
             for (int i = 0; i < maxCount; i++) {
@@ -198,15 +200,16 @@ public class ArvoreGenerica<T> {
     }
 
     public int getProfundidade(ArvoreGenerica<T> Arvore, GenericNode<T> no) {
-        if (Arvore.isRoot(no)) {
+        System.out.println("skjdhaskjas " + no.getValor());
+        if (this.raiz == no) {
             return 0;
         } else {
             return 1 + getProfundidade(Arvore, no.getPai());
         }
+        
     }
 
     ArrayList<GenericNode<T>> folhas = new ArrayList<>();
-
     public ArrayList<GenericNode<T>> getFolhas(GenericNode<T> no) {
         if (no == null) {
             no = this.raiz;

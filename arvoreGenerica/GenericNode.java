@@ -5,6 +5,10 @@ public class GenericNode<T> {
     private int profundidade;
     private T valor;
     private GenericNode<T> pai;
+    private GenericNode<T> left;
+    private GenericNode<T> right;
+
+
     private ArrayList<GenericNode<T>> filhos;
 
 
@@ -12,28 +16,41 @@ public class GenericNode<T> {
     public GenericNode(T valor) { 
         this.valor = valor;
         this.pai = null;
+        this.left = null;
+        this.right = null;
         this.profundidade = 0;
-
+        
         this.filhos = new ArrayList<>();
         
     }
 
-    //declarar um filho
+    //declarar um filho generic
     public GenericNode(T valor, GenericNode<T> pai) { 
         this.profundidade = pai.getProfundidade() + 1;
         this.valor = valor;
         this.pai = pai;
-
+        this.left = null;
+        this.right = null;
         this.filhos = new ArrayList<>();
-    } 
+    }
 
-    //declarar sub árvore
+    //declarar sub árvore geric
     public GenericNode(int profundidade, T valor, GenericNode<T> pai, ArrayList<GenericNode<T>> filhos) { 
         this.profundidade = profundidade;
         this.valor = valor;
         
         this.pai = pai;
         this.filhos = filhos;
+    } 
+
+    //declarar com filho esquerdo ou direito
+    public GenericNode(int profundidade, T valor, GenericNode<T> pai, GenericNode<T> left,GenericNode<T> right) { 
+        this.profundidade = profundidade;
+        this.valor = valor;
+        this.left = left;
+        this.right = right;
+        this.pai = pai;
+        this.filhos = null;
     } 
 
     // getter/setter
@@ -69,6 +86,23 @@ public class GenericNode<T> {
         this.filhos = filhos;
     }
 
+    //BINARIOS
+    public GenericNode<T> getLeft() {
+        return left;
+    }
+
+    public void setLeft(GenericNode<T> left) {
+        this.left = left;
+    }
+
+    public GenericNode<T> getRight() {
+        return right;
+    }
+
+    public void setRight(GenericNode<T> right) {
+        this.right = right;
+    }
+
     //retornar se possui filhos
     public boolean hasFilhos() {
         return !filhos.isEmpty();
@@ -83,6 +117,9 @@ public class GenericNode<T> {
             return false;
         }
     }
+
+    //binarios
+    
     
     //retornar grau do nó
     public int getGrau() { 
@@ -97,6 +134,23 @@ public class GenericNode<T> {
         }else{
             return filhos.size();
         }
+
+    
+        // 
+    }
+    //binario
+    public int getGrauBinary() { 
+        if(this.left == null && this.right == null){ //para caso de 
+            return 0;
+        }else if(this.left != null && this.right == null){
+            return 1;
+        }else if(this.left == null && this.right != null){
+            return 1;
+        }else if(this.left!= null &&  this.right != null){
+            return 2;
+        }else return 0;
+
+    
         // 
     }
 
