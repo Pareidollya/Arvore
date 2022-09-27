@@ -62,10 +62,14 @@ public class ArvoreGenerica<T> {
                 }
             }
         }
-        if(this.type == 2 ){
+        else{
+            if(no.getValor() == valor){
+                noResultado = no;   
+            }
             if(no.hasLeft()){
-                if(no.getLeft().getValor() == valor) noResultado = no.getLeft();
+                if(no.getLeft().getValor() == valor) {noResultado = no.getLeft();}
                 else buscar(valor, no.getLeft());
+
             }else if(no.hasRight()){
                 if(no.getRight().getValor() == valor) noResultado = no.getRight();
                 else buscar(valor, no.getRight());
@@ -118,20 +122,40 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             no = this.raiz;
         }
-        int maxCount = no.getFilhos().size();
-        if (maxCount > 0) {
-            for (int i = 0; i < maxCount; i++) {
-                if (no.getFilhos().size() > 0 && no.getFilhos().get(i) != null) { // || no.getFilhos().get(i).getValor()
-                                                                                  // == null
-                    System.out.print("  ");
-                    for (int j = 0; j < no.getProfundidade(); j++) {
+        if(this.type == 0 || this.type == 1) {
+            int maxCount = no.getFilhos().size();
+            if (maxCount > 0) {
+                for (int i = 0; i < maxCount; i++) {
+                    if (no.getFilhos().size() > 0 && no.getFilhos().get(i) != null) { // || no.getFilhos().get(i).getValor()
+                                                                                      // == null
                         System.out.print("  ");
+                        for (int j = 0; j < no.getProfundidade(); j++) {
+                            System.out.print("  ");
+                        }
+                        System.out.println(no.getFilhos().get(i).getValor());
+                        showTree(no.getFilhos().get(i));
                     }
-                    System.out.println(no.getFilhos().get(i).getValor());
-                    showTree(no.getFilhos().get(i));
                 }
             }
+        }else{
+            if(no.hasLeft()){
+                System.out.print("  ");
+                for (int j = 0; j < this.getProfundidade(null, no); j++) {
+                    System.out.print("  ");
+                }
+                System.out.println(no.getLeft().getValor());
+                showTree(no.getLeft());
+
+            }if(no.hasRight()){
+                System.out.print("  ");
+                for (int j = 0; j < this.getProfundidade(null, no); j++) {
+                    System.out.print("  ");
+                }
+                System.out.println(no.getRight().getValor());
+                showTree(no.getRight());
+            }
         }
+       
     }
     public void showSubarvores(GenericNode<T> no){ 
         if (no == null) {
@@ -208,16 +232,6 @@ public class ArvoreGenerica<T> {
         }
     }
 
-    public int getProfundidade(ArvoreGenerica<T> Arvore, GenericNode<T> no) {
-        System.out.println("skjdhaskjas " + no.getValor());
-        if (this.raiz == no) {
-            return 0;
-        } else {
-            return 1 + getProfundidade(Arvore, no.getPai());
-        }
-        
-    }
-
     ArrayList<GenericNode<T>> folhas = new ArrayList<>();
     public ArrayList<GenericNode<T>> getFolhas(GenericNode<T> no) {
         if (no == null) {
@@ -250,18 +264,23 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             no = this.raiz;
         }
-        int maxCount = no.getFilhos().size();
-        if (maxCount > 0) {
-            if (no.isRoot() == false) {
-                internosList.add(no);
-            }
-            for (int i = 0; i < maxCount; i++) {
-                if(no.getFilhos().get(i) != null){
-                    getInternosList(no.getFilhos().get(i));
+        if(this.type <= 1){
+            int maxCount = no.getFilhos().size();
+            if (maxCount > 0) {
+                if (no.isRoot() == false) {
+                    internosList.add(no);
                 }
-                
+                for (int i = 0; i < maxCount; i++) {
+                    if(no.getFilhos().get(i) != null){
+                        getInternosList(no.getFilhos().get(i));
+                    }
+                    
+                }
             }
+        }else if (this.type > 1){
+            
         }
+        
         return internosList;
     }
 
@@ -276,6 +295,18 @@ public class ArvoreGenerica<T> {
         }
         clear();
         return altura_arvore;
+    }
+
+    public int getProfundidade(GenericNode<T> Arvore, GenericNode<T> no) {
+        if(Arvore == null){
+            Arvore = this.raiz;
+        }
+        if (this.raiz == no) {
+            return 0;
+        } else {
+            return 1 + getProfundidade(Arvore, no.getPai());
+        }
+        
     }
 
     // caso usar a raiz, irá retornar altura da arvore
@@ -433,10 +464,10 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             no = this.raiz;
         }
-        if (no.getFilhos().get(0) == null || no.getFilhos().size() == 0) {
-            return false;
-        } else {
+        if (no.getFilhos().size() == 0) {
             return true;
+        } else {
+            return false;
         }
     }
 
@@ -444,7 +475,7 @@ public class ArvoreGenerica<T> {
         if (no == null) {
             no = this.raiz;
         }
-        if (no.getFilhos().get(1) == null || no.getFilhos().size() <= 1) {
+        if (no.getFilhos().size() <= 1) {
             return false;
         } else {
             return true;
@@ -465,44 +496,47 @@ public class ArvoreGenerica<T> {
         return no.getFilhos().get(no.getFilhos().size() - 1);
     }
 
-    public GenericNode<T> addLeft(T no, T novoValor) {
-        GenericNode<T> noPai = buscar(no, this.raiz);
-        if (no == null) {
-            noPai = this.raiz;
-        }
-
-        if (hasLeft(noPai) != true) {
-            GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
-            if( noPai.getFilhos().get(0) == null){
-                noPai.getFilhos().remove(0);
-            }
-            
-            noPai.getFilhos().add(0, noFilho);
-        }
-        return noPai.getFilhos().get(0);
-    }
-
-    public GenericNode<T> addRight(T no, T novoValor) {
+    public void addLeft(T no, T novoValor) {
         GenericNode<T> noPai = buscar(no, this.raiz);
         if (no == null) {
             noPai = this.raiz;
         }
         GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
-        if (hasRight(noPai) != true && this.type != 2)  {
+        if (hasLeft(noPai) != true && this.type != 2) {
+            if( noPai.getFilhos().get(0) == null){
+                noPai.getFilhos().remove(0);
+            }
+            
+            noPai.getFilhos().add(0, noFilho);
+           
+        }else if(this.type > 1){
+            if(!noPai.hasLeft()){
+                noPai.setLeft(noFilho);
+            }
+        }
+
+    }
+
+    public void addRight(T no, T novoValor) {
+        GenericNode<T> noPai = buscar(no, this.raiz);
+        if (no == null) {
+            noPai = this.raiz;
+        }
+        GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
+        if (hasRight(noPai) != true && this.type <= 1)  {
             if(hasLeft(noPai) != true && noPai.getFilhos().size() == 0 ){
                 noPai.addFilho(null);
                 noPai.addFilho(noFilho);
             }
-            System.out.println("a");
-            
             noPai.getFilhos().remove(1);
             noPai.getFilhos().add(1, noFilho);
-            return noPai.getFilhos().get(1);
-        }else{
-            if(noPai.hasLeft()){
+          
+        }else if(this.type > 1){
+            
+            if(!noPai.hasRight()){
                 noPai.setRight(noFilho);
+                // System.out.println("adicionado direita ");
             }
-            return noPai.getRight();
         }
         
         // return no.getFilhos().get(no.getFilhos().size() - 1);

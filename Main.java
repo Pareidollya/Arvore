@@ -55,7 +55,7 @@ class Main {
     arvore.clear();
     System.out.println("folhas aq: " + arvore.getFolhas(arvore.buscar(2, arvore.getRaiz())));
     arvore.clear();
-    System.out.println("profundidade de nó: " + arvore.getProfundidade(arvore, arvore.buscar(2, arvore.getRaiz())));
+    System.out.println("profundidade de nó: " + arvore.getProfundidade(null, arvore.buscar(2, arvore.getRaiz())));
     System.out.println("altura de 5 (forced): "
         + arvore.getProfundidadeFromNode(arvore.buscar(5, arvore.getRaiz()), arvore.buscar(4, arvore.getRaiz())));
     System.out.println("folha do nó 5: " + arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())).get(0).getValor());
@@ -102,7 +102,7 @@ class Main {
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
     System.out.println("folhas aq: " + arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())));
     arvore.clear();
-    System.out.println("profundidade de nó: " + arvore.getProfundidade(arvore, arvore.buscar(103, arvore.getRaiz())));
+    System.out.println("profundidade de nó: " + arvore.getProfundidade(null, arvore.buscar(103, arvore.getRaiz())));
     arvore.clear();
     System.out.println("altura de x ate y: "
         + arvore.getProfundidadeFromNode(arvore.buscar(2, arvore.getRaiz()), arvore.buscar(103, arvore.getRaiz())));
@@ -120,8 +120,28 @@ class Main {
     arvore.showProfundidades(null);
     arvore.showSubarvores(null);
 
-    Scanner s = new Scanner(System.in);
+    //TESTES BINARIA TRUE
 
+    System.out.println("TESTES BINARIA TRUE\n");
+    ArvoreGenerica<Integer> arvoreBinaria2 = new ArvoreGenerica<Integer>(0);
+    arvoreBinaria2.setType(2);
+    arvoreBinaria2.addLeft(0, 1);
+    arvoreBinaria2.addRight(0, 2);
+    arvoreBinaria2.addLeft(1, 3);
+    // System.out.println("algo aki " + arvoreBinaria2.getRaiz().getRight());
+
+    //showArvore
+    System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
+    arvoreBinaria2.showTree(arvoreBinaria2.getRaiz());
+
+    
+
+    System.out.println("\nFIM TESTE BINARIA\n");
+
+
+
+    //INICIO MAIN
+    Scanner s = new Scanner(System.in);
     int value;
 
     System.out.print("Insira o valor da raiz: ");
