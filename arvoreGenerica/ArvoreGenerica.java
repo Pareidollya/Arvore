@@ -462,10 +462,30 @@ public class ArvoreGenerica<T> {
                         maxGrau = no.getFilhos().get(i).getGrau();
                     }
                 }
-
             }
         }
         return maxGrau;
+    }
+    public void showFilhos(GenericNode<T> node){
+        if (node.getGrau() > 0 && this.type < 2) {
+            System.out.print("Filhos: ");
+            for (int i = 0; i < node.getFilhos().size(); i++) {
+                if (node.getFilhos().get(i) != null) {
+                    System.out.print(node.getFilhos().get(i).getValor() + ";  ");
+                }
+            }
+        }else if(node.getGrauBinary() > 0 && this.type >= 2){
+            if(node.getGrauBinary() == 2){
+                System.out.print("Filho Esquerdo: " + node.getLeft().getValor() + " | "+ "Filho direito: " + node.getRight().getValor());
+            }else if(node.hasLeft() == true && node.hasRight() == false){
+                System.out.print("Filho Esquerdo: " + node.getLeft().getValor()+ " | "+ "Filho direito: " + node.getRight());
+            }else if(node.hasLeft() == false && node.hasRight() == true){
+                System.out.print("Filho Esquerdo: " + node.getLeft()+ " | "+ "Filho direito: " + node.getRight().getValor());
+            }
+            
+        } else {
+            System.out.print("Não possui filhos.");
+        }
     }
 
     public void showInternos(GenericNode<T> no) { // imprimir nós internos de uma (sub)arvore
@@ -473,12 +493,16 @@ public class ArvoreGenerica<T> {
             no = this.raiz;
         }
         ArrayList<GenericNode<T>> internosList = getInternosList(no);
+        if(internosList.contains(no)){
+            internosList.remove(0);
+        }
         if (internosList.size() > 0) {
-            System.out.print("\nNós Internos de " + no.getValor() + "(" + internosList.size() + "): ");
+            System.out.print("\nNós Internos de " + no.getValor() + ": ");
+            // System.out.print("\nNós Internos de " + no.getValor() + "(" + internosList.size() + "): ");
             for (int i = 0; i < internosList.size(); i++) {
                 System.out.print(internosList.get(i).getValor() + " ");
             }
-            System.out.println("");
+            // System.out.println("");
         } else {
             System.out.println("\nEsta (sub)arvore não possui nós internos.");
         }
@@ -490,7 +514,8 @@ public class ArvoreGenerica<T> {
         }
         ArrayList<GenericNode<T>> folhas = getFolhas(no);
         if (folhas.size() > 0) {
-            System.out.print("\nNós Folhas de " + no.getValor() + "(" + folhas.size() + "): ");
+            System.out.print("\nNós Folhas de " + no.getValor() + ": ");
+            // System.out.print("\nNós Folhas de " + no.getValor() + "(" + folhas.size() + "): ");
             for (int i = 0; i < folhas.size(); i++) {
                 System.out.print(folhas.get(i).getValor() + " ");
             }
@@ -500,40 +525,36 @@ public class ArvoreGenerica<T> {
         }
     }
 
-    public void showNodeInfo(T valor) { // imprimir informações de um nó de valor x
-        GenericNode<T> node = buscar(valor, null);
-        System.out.println("------ \nINFORMAÇÕES DO NÓ:");
-        System.out.println("Valor: " + node.getValor());
+    public void showNodeType(GenericNode<T> node){
         if (node == this.raiz) {
             System.out.println("Tipo: Nó Raiz");
+        }else if(node.getGrau() > 0 || node.getGrauBinary() > 0){
+            System.out.println("Tipo: Nó Interno");
+            System.out.println("Nó pai: " + node.getPai().getValor());
         } else if (node.getGrau() == 0) {
             System.out.println("Tipo: Nó Folha");
             System.out.println("Nó pai: " + node.getPai().getValor());
-        } else {
-            System.out.println("Tipo: Nó Interno");
-            System.out.println("Nó pai: " + node.getPai().getValor());
         }
-
-        System.out.print("Filhos: ");
-        if (node.getGrau() > 0) {
-            for (int i = 0; i < node.getFilhos().size(); i++) {
-                if (node.getFilhos().get(i) != null) {
-                    System.out.print(node.getFilhos().get(i).getValor() + ";  ");
-                }
-            }
-        } else {
-            System.out.print("Não possui filhos.");
+    }
+    public void showNodeParentescos(GenericNode<T> node) {
+        if(this.type <= 1){
+            System.out.println("Grau: " + node.getGrau());
+        }else{
+            System.out.println("Grau: " + node.getGrauBinary());
         }
-
-        System.out.print("\n");
-        System.out.println("Grau: " + node.getGrau());
         System.out.println("Profundidade: " + node.getProfundidade());
         System.out.println("Altura: " + getAlturaNode(node));
+    }
 
-        if (this.type == 1) {
-            System.out.println("Filho esquerdo: " + node.getFilhos().get(0)
-                    + "Filho direito: " + node.getFilhos().get(1) + "\n");
-        }
+    public void showNodeInfo(T valor) { // imprimir informações de um nó de valor x
+        GenericNode<T> node = buscar(valor, null);
+        System.out.println("------ \nINFORMAÇÕES DO NÓ:\n");
+        System.out.println("Valor: " + node.getValor());
+        showNodeType(node);
+        showNodeParentescos(node);
+        showFilhos(node);
+        showInternos(node);
+        showFolhas(node);
         System.out.print("\n------\n");
     }
 
@@ -689,6 +710,7 @@ public class ArvoreGenerica<T> {
             }
         }
     }
+
     public void convertTrueBinary(GenericNode<T> no) {
         if (no == null) {
             no = this.raiz;
@@ -705,10 +727,11 @@ public class ArvoreGenerica<T> {
                     no.setLeft(no.getFilhos().get(0));
                     no.setRight(no.getFilhos().get(no.getFilhos().size() - 1));
                 }
-                convertToBinary(no.getFilhos().get(i));
+                if (no.getFilhos().size() > 0 && no.getFilhos().get(i) != null) {
+                    convertTrueBinary(no.getFilhos().get(i));
+                }
             }
         }
-        System.out.println("Agora esta arvore é binária...\n");
     }
 
     // if(maxCount == 0){

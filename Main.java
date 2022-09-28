@@ -80,16 +80,16 @@ class Main {
     System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(2, arvore.getRaiz())));
     // arvore.convertToBinary(arvore.buscar(2, null));
     arvore.convertTrueBinary(null);
-    
+    System.out.println(arvore.getType());
     arvore.showTree(arvore.buscar(2, null));
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
     System.out.println("folhas aq: " + arvore.getFolhas(arvore.buscar(5, arvore.getRaiz())));
-    System.out.println("profundidade de nó: " + arvore.getProfundidade(null, arvore.buscar(103, arvore.getRaiz())));
-    System.out.println("altura de x ate y: "
-        + arvore.getProfundidadeFromNode(arvore.buscar(2, arvore.getRaiz()), arvore.buscar(103, arvore.getRaiz())));
+    // System.out.println("profundidade de nó: " + arvore.getProfundidade(null, arvore.buscar(103, arvore.getRaiz())));
+    // System.out.println("altura de x ate y: "
+    //     + arvore.getProfundidadeFromNode(arvore.buscar(2, arvore.getRaiz()), arvore.buscar(103, arvore.getRaiz())));
     System.out.println("maior grau de raiz: " + arvore.getMaxNodeGrau(arvore.buscar(2, arvore.getRaiz())));
-    arvore.showNodeInfo(103);
-    arvore.removeNode(103);
+    arvore.showNodeInfo(101);
+    // arvore.removeNode(103);
     arvore.showTree(arvore.buscar(2, arvore.getRaiz()));
     arvore.showNodeInfo(2);
     arvore.showAlturas(null);
@@ -131,7 +131,7 @@ class Main {
       System.out.println("profundidade " + arvoreBinaria2.getProfundidadeFromNode(arvoreBinaria2.getRaiz(), arvoreBinaria2.buscar(1, null)));
       System.out.println("grau " + arvoreBinaria2.buscar(2, null).getGrauBinary());
       System.out.println("altura da arvore " + arvoreBinaria2.getAlturaThree());
-      arvoreBinaria2.showInternos(null);
+      arvoreBinaria2.showInternos(arvoreBinaria2.buscar(1, null));
       arvoreBinaria2.showFolhas(null);
       System.out.println("profundidades");
       arvoreBinaria2.showProfundidades(null);
@@ -140,6 +140,7 @@ class Main {
       System.out.println("arvore graus");
       arvoreBinaria2.showGraus(null);
 
+      arvoreBinaria2.showNodeInfo(2);
       
       System.out.println("\nFIM TESTE BINARIA\n");
 
