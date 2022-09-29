@@ -124,6 +124,8 @@ public class ArvoreGenerica<T> {
             System.out.println("> Não é possível inserir um novo filho em " + no);
         }
     }
+    
+
 
     public void showTree(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
         if (no == null) {
@@ -732,6 +734,45 @@ public class ArvoreGenerica<T> {
                 }
             }
         }
+    }
+
+    //FUNÇÕES PARA ARVORE BINARIA DE BUSCA
+    public void convertToSearchBinary(GenericNode<T> no){
+        if (no == null) {
+            no = this.raiz;
+        }
+        this.type = 3;
+
+    }
+    public boolean contain(T valor){ //se um valor esta contido na arvore
+        if(buscar(valor, null) != null) return false;
+        else return true;
+    }
+
+    public void inserirBB(T valor){
+        if(!contain(valor)){
+        GenericNode<T> no = this.raiz;
+        insercaoBB(valor, no);
+        System.out.println("Valor: " + valor + " Adicionado na árvore");
+        }else{
+            System.out.println("Valor: " + valor + " já existe na arvore.");
+        }
+    }
+
+    public void insercaoBB(T valor, GenericNode<T> no){ //função recursiva para inserir um novo nó
+        if(!contain(valor)){
+            if( (int) valor < (int) no.getValor()){
+                if(no.hasLeft() == false){
+                    GenericNode<T> filho = new GenericNode<T>(valor, no);
+                    no.setLeft(filho);
+                }else insercaoBB(valor, no.getLeft());
+            }else{
+                if(no.hasRight() == false){
+                    GenericNode<T> filho = new GenericNode<T>(valor, no);
+                    no.setRight(filho);
+                }
+            }
+        }  
     }
 
     // if(maxCount == 0){
