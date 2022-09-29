@@ -750,11 +750,15 @@ public class ArvoreGenerica<T> {
             no = this.raiz;
         }
         this.type = 3;
-
+        ArrayList<GenericNode<T>> internos = getInternosList(no);
+        ArrayList<GenericNode<T>> folhas = getFolhas(no);
+        
+        insercaoBB(null, no, internos.get(0));
     }
 
     //remover um nó binario
     //funciona para arvore binaria e bBusca
+
     public void removeBinary(T no){ 
         GenericNode<T> noFilho = buscar(no, this.raiz);
         GenericNode<T> noPai = buscar(no, this.raiz).getPai();
@@ -799,31 +803,75 @@ public class ArvoreGenerica<T> {
     public void inserirBB(T valor) {
         if (!contain(valor)) {
             GenericNode<T> no = this.raiz;
-            insercaoBB(valor, no);
+            insercaoBB(valor, no, null);
             System.out.println("Valor: " + valor + " Adicionado na árvore");
         } else {
             System.out.println("Valor: " + valor + " já existe na arvore.");
         }
     }
 
-    public void insercaoBB(T valor, GenericNode<T> no) { // função recursiva para inserir um novo nó
-        if (!contain(valor)) {
+    public void insercaoBB(T valor, GenericNode<T> no, GenericNode<T> novoFilho) { // função recursiva para inserir ou reinserir um nó de busca
+        if (!contain(valor) && novoFilho != null) {  
+            //criar novos filhos
             if ((int) valor < (int) no.getValor()) {
                 if (!no.hasLeft()) {
                     GenericNode<T> filho = new GenericNode<T>(valor, no);
                     no.setLeft(filho);
                 } else
-                    insercaoBB(valor, no.getLeft());
+                    insercaoBB(valor, no.getLeft(), null);
             } else {
                 if (!no.hasRight()) {
                     GenericNode<T> filho = new GenericNode<T>(valor, no);
                     no.setRight(filho);
+
                 }else
-                    insercaoBB(valor, no.getRight());
+                    insercaoBB(valor, no.getRight(), null);
+            }
+        }
+        else{
+            //deifnir o novo filho do no e definir o novo pai do novo filho. (reinserção)
+            novoFilho.setLeft(null);
+            novoFilho.setRight(null);
+            if(no != null){ //reposicionar nós até a folha.
+                if ((int) novoFilho.getValor() < (int) no.getValor()) {
+                    no.setLeft(novoFilho);
+                    novoFilho.setPai(no);
+                    insercaoBB(null, no.getLeft(), novoFilho);
+                } else {
+                    no.setRight(novoFilho);
+                    novoFilho.setPai(no);
+                    insercaoBB(null, no.getRight(), novoFilho);
+                }
             }
         }
     }
+    
 
+    public GenericNode<T> getMaior(GenericNode<T> no, String side){
+        if(no == null){
+            no = this.raiz;
+        }
+        if(side == null){side = "left";}
+        //pegar todos os nós parentes
+        ArrayList<GenericNode<T>> internos = null;
+        ArrayList<GenericNode<T>> folhas = null;
+        GenericNode<T> maior = null;
+        if(side == "left"){internos = getInternosList(no.getLeft()); }
+        else{folhas = getFolhas(no.getLeft()); }
+
+        
+        for(int i = 0; i < internos.size(); i++){//pegar o maior interno
+            if((int) internos.get(i).getValor() > (int) maior.getValor()){   
+                maior = internos.get(i);     
+            }
+        }
+        for(int i = 0; i < folhas.size(); i++){//pegar o maior folha
+            if((int) internos.get(i).getValor() > (int) maior.getValor()){   
+                maior = folhas.get(i);     
+            }
+        }
+        return maior;
+    }
     // if(maxCount == 0){
     // no.getFilhos().add(null);
     // no.getFilhos().add(null);
