@@ -141,6 +141,15 @@ class Main {
       arvoreBinaria2.showGraus(null);
 
       arvoreBinaria2.showNodeInfo(2);
+
+      //teste de remoção
+      System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
+      arvoreBinaria2.showTree(arvoreBinaria2.getRaiz());
+      
+      arvoreBinaria2.removeBinary(3);
+
+      System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
+      arvoreBinaria2.showTree(arvoreBinaria2.getRaiz());
       
       System.out.println("\nFIM TESTE BINARIA\n");
 

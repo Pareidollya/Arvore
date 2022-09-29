@@ -784,7 +784,10 @@ public class ArvoreGenerica<T> {
             if(noPai.hasRight()){
                 if(noPai.getRight().getValor() == noFilho.getValor()) noPai.setRight(subArvoreFilha);
             }
-        }   
+        }
+        if(noFilho.getGrauBinary() == 2 && this.type < 3){ //remover um nó interno (subarvore)
+            System.out.println("Não é possível remover o nó interno " + no);
+        }
 
     }
 
