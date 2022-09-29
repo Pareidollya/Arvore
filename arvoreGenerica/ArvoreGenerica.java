@@ -697,6 +697,9 @@ public class ArvoreGenerica<T> {
         }
     }
 
+    
+
+
     public void convertToBinary(GenericNode<T> no) {
         if (no == null) {
             no = this.raiz;
@@ -750,11 +753,44 @@ public class ArvoreGenerica<T> {
 
     }
 
+    //remover um nó binario
+    //funciona para arvore binaria e bBusca
+    public void removeBinary(T no){ 
+        GenericNode<T> noFilho = buscar(no, this.raiz);
+        GenericNode<T> noPai = buscar(no, this.raiz).getPai();
+
+        if(noFilho.getGrauBinary() == 0){ //remover um nó folha
+            if(noPai.hasLeft()){
+                if(noPai.getLeft().getValor() == noFilho.getValor()) noPai.setLeft(null);
+            }
+            if(noPai.hasRight()){
+                if(noPai.getRight().getValor() == noFilho.getValor()) noPai.setRight(null);
+            }
+            
+
+        }else if(noFilho.getGrauBinary() == 1){ //remover um nó interno (subarvore)
+            GenericNode<T> subArvoreFilha;
+            if(noFilho.hasLeft()) { 
+                subArvoreFilha = noFilho.getLeft();
+            }else{
+                subArvoreFilha = noFilho.getRight(); 
+            }
+
+            subArvoreFilha.setPai(noPai); //definir o novo pai da subarvore.
+
+            if(noPai.hasLeft()){ //adicionar subarvore no local removido
+                if(noPai.getLeft().getValor() == noFilho.getValor()) noPai.setLeft(subArvoreFilha);
+            }
+            if(noPai.hasRight()){
+                if(noPai.getRight().getValor() == noFilho.getValor()) noPai.setRight(subArvoreFilha);
+            }
+        }   
+
+    }
+
     public boolean contain(T valor) { // se um valor esta contido na arvore
-        if (buscar(valor, null) != null)
-            return false;
-        else
-            return true;
+        if (buscar(valor, null) != null) return false;
+        else return true;
     }
 
     public void inserirBB(T valor) {
