@@ -124,8 +124,6 @@ public class ArvoreGenerica<T> {
             System.out.println("> Não é possível inserir um novo filho em " + no);
         }
     }
-    
-
 
     public void showTree(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
         if (no == null) {
@@ -468,7 +466,8 @@ public class ArvoreGenerica<T> {
         }
         return maxGrau;
     }
-    public void showFilhos(GenericNode<T> node){
+
+    public void showFilhos(GenericNode<T> node) {
         if (node.getGrau() > 0 && this.type < 2) {
             System.out.print("Filhos: ");
             for (int i = 0; i < node.getFilhos().size(); i++) {
@@ -476,15 +475,18 @@ public class ArvoreGenerica<T> {
                     System.out.print(node.getFilhos().get(i).getValor() + ";  ");
                 }
             }
-        }else if(node.getGrauBinary() > 0 && this.type >= 2){
-            if(node.getGrauBinary() == 2){
-                System.out.print("Filho Esquerdo: " + node.getLeft().getValor() + " | "+ "Filho direito: " + node.getRight().getValor());
-            }else if(node.hasLeft() == true && node.hasRight() == false){
-                System.out.print("Filho Esquerdo: " + node.getLeft().getValor()+ " | "+ "Filho direito: " + node.getRight());
-            }else if(node.hasLeft() == false && node.hasRight() == true){
-                System.out.print("Filho Esquerdo: " + node.getLeft()+ " | "+ "Filho direito: " + node.getRight().getValor());
+        } else if (node.getGrauBinary() > 0 && this.type >= 2) {
+            if (node.getGrauBinary() == 2) {
+                System.out.print("Filho Esquerdo: " + node.getLeft().getValor() + " | " + "Filho direito: "
+                        + node.getRight().getValor());
+            } else if (node.hasLeft() == true && node.hasRight() == false) {
+                System.out.print(
+                        "Filho Esquerdo: " + node.getLeft().getValor() + " | " + "Filho direito: " + node.getRight());
+            } else if (node.hasLeft() == false && node.hasRight() == true) {
+                System.out.print(
+                        "Filho Esquerdo: " + node.getLeft() + " | " + "Filho direito: " + node.getRight().getValor());
             }
-            
+
         } else {
             System.out.print("Não possui filhos.");
         }
@@ -495,12 +497,13 @@ public class ArvoreGenerica<T> {
             no = this.raiz;
         }
         ArrayList<GenericNode<T>> internosList = getInternosList(no);
-        if(internosList.contains(no)){
+        if (internosList.contains(no)) {
             internosList.remove(0);
         }
         if (internosList.size() > 0) {
             System.out.print("\nNós Internos de " + no.getValor() + ": ");
-            // System.out.print("\nNós Internos de " + no.getValor() + "(" + internosList.size() + "): ");
+            // System.out.print("\nNós Internos de " + no.getValor() + "(" +
+            // internosList.size() + "): ");
             for (int i = 0; i < internosList.size(); i++) {
                 System.out.print(internosList.get(i).getValor() + " ");
             }
@@ -517,7 +520,8 @@ public class ArvoreGenerica<T> {
         ArrayList<GenericNode<T>> folhas = getFolhas(no);
         if (folhas.size() > 0) {
             System.out.print("\nNós Folhas de " + no.getValor() + ": ");
-            // System.out.print("\nNós Folhas de " + no.getValor() + "(" + folhas.size() + "): ");
+            // System.out.print("\nNós Folhas de " + no.getValor() + "(" + folhas.size() +
+            // "): ");
             for (int i = 0; i < folhas.size(); i++) {
                 System.out.print(folhas.get(i).getValor() + " ");
             }
@@ -527,10 +531,10 @@ public class ArvoreGenerica<T> {
         }
     }
 
-    public void showNodeType(GenericNode<T> node){
+    public void showNodeType(GenericNode<T> node) {
         if (node == this.raiz) {
             System.out.println("Tipo: Nó Raiz");
-        }else if(node.getGrau() > 0 || node.getGrauBinary() > 0){
+        } else if (node.getGrau() > 0 || node.getGrauBinary() > 0) {
             System.out.println("Tipo: Nó Interno");
             System.out.println("Nó pai: " + node.getPai().getValor());
         } else if (node.getGrau() == 0) {
@@ -538,10 +542,11 @@ public class ArvoreGenerica<T> {
             System.out.println("Nó pai: " + node.getPai().getValor());
         }
     }
+
     public void showNodeParentescos(GenericNode<T> node) {
-        if(this.type <= 1){
+        if (this.type <= 1) {
             System.out.println("Grau: " + node.getGrau());
-        }else{
+        } else {
             System.out.println("Grau: " + node.getGrauBinary());
         }
         System.out.println("Profundidade: " + node.getProfundidade());
@@ -722,10 +727,10 @@ public class ArvoreGenerica<T> {
         if (maxCount > 0) {
             for (int i = 0; i < maxCount; i++) {
                 if (no.getFilhos().size() == 1 && no.getFilhos().get(i) != null) {
-                    //priorizar filho esquerdo
-                    no.setLeft(no.getFilhos().get(0));      
-                }else{  
-                    //primeiro valor da lista será esquerdo, ultimo será direito
+                    // priorizar filho esquerdo
+                    no.setLeft(no.getFilhos().get(0));
+                } else {
+                    // primeiro valor da lista será esquerdo, ultimo será direito
                     no.setLeft(no.getFilhos().get(0));
                     no.setRight(no.getFilhos().get(no.getFilhos().size() - 1));
                 }
@@ -736,43 +741,47 @@ public class ArvoreGenerica<T> {
         }
     }
 
-    //FUNÇÕES PARA ARVORE BINARIA DE BUSCA
-    public void convertToSearchBinary(GenericNode<T> no){
+    // FUNÇÕES PARA ARVORE BINARIA DE BUSCA
+    public void convertToSearchBinary(GenericNode<T> no) {
         if (no == null) {
             no = this.raiz;
         }
         this.type = 3;
 
     }
-    public boolean contain(T valor){ //se um valor esta contido na arvore
-        if(buscar(valor, null) != null) return false;
-        else return true;
+
+    public boolean contain(T valor) { // se um valor esta contido na arvore
+        if (buscar(valor, null) != null)
+            return false;
+        else
+            return true;
     }
 
-    public void inserirBB(T valor){
-        if(!contain(valor)){
-        GenericNode<T> no = this.raiz;
-        insercaoBB(valor, no);
-        System.out.println("Valor: " + valor + " Adicionado na árvore");
-        }else{
+    public void inserirBB(T valor) {
+        if (!contain(valor)) {
+            GenericNode<T> no = this.raiz;
+            insercaoBB(valor, no);
+            System.out.println("Valor: " + valor + " Adicionado na árvore");
+        } else {
             System.out.println("Valor: " + valor + " já existe na arvore.");
         }
     }
 
-    public void insercaoBB(T valor, GenericNode<T> no){ //função recursiva para inserir um novo nó
-        if(!contain(valor)){
-            if( (int) valor < (int) no.getValor()){
-                if(no.hasLeft() == false){
+    public void insercaoBB(T valor, GenericNode<T> no) { // função recursiva para inserir um novo nó
+        if (!contain(valor)) {
+            if ((int) valor < (int) no.getValor()) {
+                if (no.hasLeft() == false) {
                     GenericNode<T> filho = new GenericNode<T>(valor, no);
                     no.setLeft(filho);
-                }else insercaoBB(valor, no.getLeft());
-            }else{
-                if(no.hasRight() == false){
+                } else
+                    insercaoBB(valor, no.getLeft());
+            } else {
+                if (no.hasRight() == false) {
                     GenericNode<T> filho = new GenericNode<T>(valor, no);
                     no.setRight(filho);
                 }
             }
-        }  
+        }
     }
 
     // if(maxCount == 0){
