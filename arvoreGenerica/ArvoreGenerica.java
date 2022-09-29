@@ -770,13 +770,13 @@ public class ArvoreGenerica<T> {
     public void insercaoBB(T valor, GenericNode<T> no) { // função recursiva para inserir um novo nó
         if (!contain(valor)) {
             if ((int) valor < (int) no.getValor()) {
-                if (no.hasLeft() == false) {
+                if (!no.hasLeft()) {
                     GenericNode<T> filho = new GenericNode<T>(valor, no);
                     no.setLeft(filho);
                 } else
                     insercaoBB(valor, no.getLeft());
             } else {
-                if (no.hasRight() == false) {
+                if (!no.hasRight()) {
                     GenericNode<T> filho = new GenericNode<T>(valor, no);
                     no.setRight(filho);
                 }else
