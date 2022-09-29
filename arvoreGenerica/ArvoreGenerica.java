@@ -779,7 +779,8 @@ public class ArvoreGenerica<T> {
                 if (no.hasRight() == false) {
                     GenericNode<T> filho = new GenericNode<T>(valor, no);
                     no.setRight(filho);
-                }
+                }else
+                    insercaoBB(valor, no.getRight());
             }
         }
     }
