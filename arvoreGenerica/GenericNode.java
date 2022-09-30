@@ -8,6 +8,16 @@ public class GenericNode<T> {
     private GenericNode<T> left;
     private GenericNode<T> right;
 
+    private int i;
+
+
+    public int getI() {
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
+    }
 
     private ArrayList<GenericNode<T>> filhos;
 
@@ -52,6 +62,11 @@ public class GenericNode<T> {
         this.pai = pai;
         this.filhos = null;
     } 
+
+    public GenericNode(int i) {
+        this.i = i;
+    }
+    
 
     // getter/setter
     public int getProfundidade() {
