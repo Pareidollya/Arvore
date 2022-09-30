@@ -107,7 +107,8 @@ class Main {
       arvoreBinaria2.setType(2);
       arvoreBinaria2.addLeft(0, 1);
       arvoreBinaria2.addRight(0, 2);
-      arvoreBinaria2.addLeft(1, 3);
+      arvoreBinaria2.addLeft(1, 5);
+      arvoreBinaria2.addRight(1, 3);
       arvoreBinaria2.addLeft(2, 4);
       arvoreBinaria2.addRight(4, 6);
       arvoreBinaria2.addLeft(4, 8);
@@ -141,6 +142,8 @@ class Main {
       arvoreBinaria2.showGraus(null);
 
       arvoreBinaria2.showNodeInfo(2);
+      
+
 
       //teste de remoção
       // System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
@@ -150,8 +153,13 @@ class Main {
 
       // System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
       // arvoreBinaria2.showTree(arvoreBinaria2.getRaiz());
-      
       System.out.println("\nFIM TESTE BINARIA\n");
+//TESTE ARVORE BINARIA DE BUSCA 
+System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
+System.out.println("\nBINARIA DE BUSCA\n");
+arvoreBinaria2.showTree(null);
+arvoreBinaria2.convertToSearchBinary(null);
+System.out.println(arvoreBinaria2.contain(100));
 
     //INICIO MAIN
     Scanner s = new Scanner(System.in);

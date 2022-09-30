@@ -43,9 +43,7 @@ public class ArvoreGenerica<T> {
     GenericNode<T> noResultado = null;
 
     public GenericNode<T> buscar(T valor, GenericNode<T> no) { // retornar um nó pelo seu valor
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         if (this.raiz.getValor() == valor) {
             noResultado = this.raiz;
         }
@@ -126,9 +124,7 @@ public class ArvoreGenerica<T> {
     }
 
     public void showTree(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         if (this.type == 0 || this.type == 1) {
             int maxCount = no.getFilhos().size();
             if (maxCount > 0) {
@@ -168,9 +164,7 @@ public class ArvoreGenerica<T> {
     }
 
     public void showSubarvores(GenericNode<T> no) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         ArrayList<GenericNode<T>> internosList = getInternosList(no);
         for (int i = 0; i < internosList.size(); i++) {
             System.out.println("\nSub-arvore " + (i + 1));
@@ -182,9 +176,7 @@ public class ArvoreGenerica<T> {
     }
 
     public void showAlturas(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         if (this.type <= 1) {
             int maxCount = no.getFilhos().size();
             if (maxCount > 0) {
@@ -224,9 +216,7 @@ public class ArvoreGenerica<T> {
     }
 
     public void showProfundidades(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         if (this.type <= 1) {
             int maxCount = no.getFilhos().size();
             if (maxCount > 0) {
@@ -265,9 +255,7 @@ public class ArvoreGenerica<T> {
     }
 
     public void showGraus(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         if (this.type <= 1) {
             int maxCount = no.getFilhos().size();
             if (maxCount > 0) {
@@ -313,9 +301,7 @@ public class ArvoreGenerica<T> {
 
     // folhas = new ArrayList<>();
     public ArrayList<GenericNode<T>> returnFolhas(GenericNode<T> no, ArrayList<GenericNode<T>> folhas) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
 
         if (this.type <= 1) {
             int maxCount = no.getFilhos().size();
@@ -352,18 +338,14 @@ public class ArvoreGenerica<T> {
     }
 
     public ArrayList<GenericNode<T>> getInternosList(GenericNode<T> no) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         ArrayList<GenericNode<T>> internosList = new ArrayList<>();
         internosList = returnInternosList(no, internosList);
         return internosList;
     }
 
     public ArrayList<GenericNode<T>> returnInternosList(GenericNode<T> no, ArrayList<GenericNode<T>> internosList) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         if (this.type <= 1) {
             int maxCount = no.getFilhos().size();
             if (maxCount > 0) {
@@ -450,9 +432,7 @@ public class ArvoreGenerica<T> {
     }
 
     public int getMaxNodeGrau(GenericNode<T> no) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         int maxCount = no.getFilhos().size();
         int maxGrau = no.getGrau(); // maior grau será definido a partir do primeiro nó instanciado
         if (maxCount > 0) {
@@ -493,9 +473,7 @@ public class ArvoreGenerica<T> {
     }
 
     public void showInternos(GenericNode<T> no) { // imprimir nós internos de uma (sub)arvore
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         ArrayList<GenericNode<T>> internosList = getInternosList(no);
         if (internosList.contains(no)) {
             internosList.remove(0);
@@ -514,9 +492,7 @@ public class ArvoreGenerica<T> {
     }
 
     public void showFolhas(GenericNode<T> no) { // imprimir lista de folhas de uma (sub)arvore
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         ArrayList<GenericNode<T>> folhas = getFolhas(no);
         if (folhas.size() > 0) {
             System.out.print("\nNós Folhas de " + no.getValor() + ": ");
@@ -583,9 +559,7 @@ public class ArvoreGenerica<T> {
     }
 
     public void clearTree(GenericNode<T> no) { // caso passe um no ele limpará sub arvore
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         no.getFilhos().clear();
         System.out.println("(sub)árvore limpa.");
 
@@ -593,9 +567,7 @@ public class ArvoreGenerica<T> {
 
     // funçoes para binaria
     public boolean hasLeft(GenericNode<T> no) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         if (no.getFilhos().size() == 0) {
             return true;
         } else {
@@ -604,9 +576,7 @@ public class ArvoreGenerica<T> {
     }
 
     public boolean hasRight(GenericNode<T> no) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         if (no.getFilhos().size() <= 1) {
             return false;
         } else {
@@ -615,16 +585,12 @@ public class ArvoreGenerica<T> {
     }
 
     public GenericNode<T> getLeft(GenericNode<T> no) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         return no.getFilhos().get(0);
     }
 
     public GenericNode<T> getRight(GenericNode<T> no) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         return no.getFilhos().get(no.getFilhos().size() - 1);
     }
 
@@ -701,9 +667,7 @@ public class ArvoreGenerica<T> {
 
 
     public void convertToBinary(GenericNode<T> no) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         this.type = 1;
         int maxCount = no.getFilhos().size();
         if (maxCount > 0) {
@@ -722,9 +686,7 @@ public class ArvoreGenerica<T> {
     }
 
     public void convertTrueBinary(GenericNode<T> no) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         this.type = 2;
         int maxCount = no.getFilhos().size();
         if (maxCount > 0) {
@@ -746,14 +708,28 @@ public class ArvoreGenerica<T> {
 
     // FUNÇÕES PARA ARVORE BINARIA DE BUSCA
     public void convertToSearchBinary(GenericNode<T> no) {
-        if (no == null) {
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         this.type = 3;
+        reWrite(no);
+        System.out.println("convertido para binaria de busca");
+        showTree(no);
+    }
+
+    public void reWrite(GenericNode<T> no){ //reescrever valores da arvore com valores antigos como arvore de busca
+        no = setNodeToRoot(no);
         ArrayList<GenericNode<T>> internos = getInternosList(no);
         ArrayList<GenericNode<T>> folhas = getFolhas(no);
+        System.out.println(internos);
+        System.out.println(folhas);
+        no.setLeft(null);
+        no.setRight(null);
         
-        insercaoBB(null, no, internos.get(0));
+        for(int i = 0; i < internos.size(); i++) {
+            inserirBB(internos.get(i).getValor());
+        }
+        for(int i = 0; i < folhas.size(); i++) {
+            inserirBB(folhas.get(i).getValor());
+        }
     }
 
     //remover um nó binario
@@ -796,61 +772,43 @@ public class ArvoreGenerica<T> {
     }
 
     public boolean contain(T valor) { // se um valor esta contido na arvore
-        if (buscar(valor, null) != null) return false;
+        if (buscar(valor, null) == null) return false;
         else return true;
     }
 
     public void inserirBB(T valor) {
         if (!contain(valor)) {
             GenericNode<T> no = this.raiz;
-            insercaoBB(valor, no, null);
+            insercaoBB(valor, no);
             System.out.println("Valor: " + valor + " Adicionado na árvore");
         } else {
             System.out.println("Valor: " + valor + " já existe na arvore.");
         }
     }
 
-    public void insercaoBB(T valor, GenericNode<T> no, GenericNode<T> novoFilho) { // função recursiva para inserir ou reinserir um nó de busca
-        if (!contain(valor) && novoFilho != null) {  
+    public void insercaoBB(T valor, GenericNode<T> no) { // função recursiva para inserir ou reinserir um nó de busca
+        if (!contain(valor)) {  
             //criar novos filhos
             if ((int) valor < (int) no.getValor()) {
                 if (!no.hasLeft()) {
                     GenericNode<T> filho = new GenericNode<T>(valor, no);
                     no.setLeft(filho);
                 } else
-                    insercaoBB(valor, no.getLeft(), null);
+                    insercaoBB(valor, no.getLeft());
             } else {
                 if (!no.hasRight()) {
                     GenericNode<T> filho = new GenericNode<T>(valor, no);
                     no.setRight(filho);
 
                 }else
-                    insercaoBB(valor, no.getRight(), null);
-            }
-        }
-        else{
-            //deifnir o novo filho do no e definir o novo pai do novo filho. (reinserção)
-            novoFilho.setLeft(null);
-            novoFilho.setRight(null);
-            if(no != null){ //reposicionar nós até a folha.
-                if ((int) novoFilho.getValor() < (int) no.getValor()) {
-                    no.setLeft(novoFilho);
-                    novoFilho.setPai(no);
-                    insercaoBB(null, no.getLeft(), novoFilho);
-                } else {
-                    no.setRight(novoFilho);
-                    novoFilho.setPai(no);
-                    insercaoBB(null, no.getRight(), novoFilho);
-                }
+                    insercaoBB(valor, no.getRight());
             }
         }
     }
-    
+
 
     public GenericNode<T> getMaior(GenericNode<T> no, String side){
-        if(no == null){
-            no = this.raiz;
-        }
+        no = setNodeToRoot(no);
         if(side == null){side = "left";}
         //pegar todos os nós parentes
         ArrayList<GenericNode<T>> internos = null;
@@ -871,6 +829,13 @@ public class ArvoreGenerica<T> {
             }
         }
         return maior;
+    }
+
+    public GenericNode<T> setNodeToRoot(GenericNode<T> no){
+        if(no == null){
+            no = this.raiz;
+        }
+        return no;
     }
     // if(maxCount == 0){
     // no.getFilhos().add(null);
