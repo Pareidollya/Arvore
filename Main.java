@@ -162,9 +162,23 @@ System.out.println("\nBINARIA DE BUSCA\n");
 arvoreBinaria2.showTree(null);
 arvoreBinaria2.convertToSearchBinary(null);
 arvoreBinaria2.inserirBB(9);
+// arvoreBinaria2.inserirBB(7);
 arvoreBinaria2.removeBinary(8);
 
+// arvoreBinaria2.removeBinary(6);
+// arvoreBinaria2.clearTree(null);
 
+// arvoreBinaria2.getRaiz().setValor(40);
+// arvoreBinaria2.inserirBB(30);
+// arvoreBinaria2.inserirBB(65);
+// arvoreBinaria2.inserirBB(25);
+// arvoreBinaria2.inserirBB(35);
+// arvoreBinaria2.inserirBB(75);
+// arvoreBinaria2.inserirBB(28);
+// arvoreBinaria2.inserirBB(38);
+// arvoreBinaria2.inserirBB(26);
+
+// arvoreBinaria2.removeBinary(30);
 System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
 arvoreBinaria2.showTree(null);
 

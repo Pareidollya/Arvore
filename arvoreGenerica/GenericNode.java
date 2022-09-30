@@ -7,18 +7,7 @@ public class GenericNode<T> {
     private GenericNode<T> pai;
     private GenericNode<T> left;
     private GenericNode<T> right;
-
     private int i;
-
-
-    public int getI() {
-        return i;
-    }
-
-    public void setI(int i) {
-        this.i = i;
-    }
-
     private ArrayList<GenericNode<T>> filhos;
 
 
@@ -63,7 +52,7 @@ public class GenericNode<T> {
         this.filhos = null;
     } 
 
-    public GenericNode(int i) {
+    public GenericNode(int i) { //DECLARAÇÃO PARA VALOR COMPARATIVO DE BUSCA INTEIRA
         this.i = i;
     }
     
@@ -116,6 +105,14 @@ public class GenericNode<T> {
 
     public void setRight(GenericNode<T> right) {
         this.right = right;
+    }
+    
+    public int getI() {
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
     }
 
     //retornar se possui filhos
