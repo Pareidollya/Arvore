@@ -179,8 +179,63 @@ arvoreBinaria2.removeBinary(8);
 // arvoreBinaria2.inserirBB(26);
 
 // arvoreBinaria2.removeBinary(30);
+
+// arvoreBinaria2.buscar(2, null)
+
+
 System.out.println("show arvore\n" + arvoreBinaria2.getRaiz().getValor());
 arvoreBinaria2.showTree(null);
+
+ArvoreGenerica<Integer> arvore3 = new ArvoreGenerica<Integer>(40);
+
+//iniciar como generica
+System.out.println("APRESENTAÇÃO MAIN");
+arvore3.inserirNode(null, 30);
+arvore3.inserirNode(null, 55);//new
+arvore3.inserirNode(null, 65);
+
+arvore3.inserirNode(30, 25);
+arvore3.inserirNode(30, 29); //new
+arvore3.inserirNode(30, 35);
+
+arvore3.inserirNode(25, 28);
+arvore3.inserirNode(28, 26);
+
+arvore3.inserirNode(35, 38);
+
+arvore3.inserirNode(65, 75);
+
+System.out.println("show arvore\n" + arvore3.getRaiz().getValor());
+arvore3.showTree(null);
+
+// arvore3.convertTrueBinary(null);
+
+// System.out.println("show arvore\n" + arvore3.getRaiz().getValor());
+// arvore3.showTree(null);
+
+// arvore3.convertToSearchBinary(null);
+
+// arvore3.showNodeInfo(30);
+
+// System.out.println("show arvore\n" + arvore3.getRaiz().getProfundidade());
+// arvore3.showProfundidades(null);
+
+// arvore3.showSubarvores(null);
+
+// arvore3.removeBinary(28);
+
+// arvore3.clearTree(null);
+
+// arvore3.inserirBB(30);
+// arvore3.inserirBB(65);
+// arvore3.inserirBB(25);
+// arvore3.inserirBB(35);
+// arvore3.inserirBB(75);
+// arvore3.inserirBB(28);
+// arvore3.inserirBB(38);
+// arvore3.inserirBB(26);
+System.out.println("show arvore\n" + arvore3.getRaiz().getValor());
+arvore3.showTree(null);
 
     //INICIO MAIN
     Scanner s = new Scanner(System.in);

@@ -48,7 +48,7 @@ public class ArvoreGenerica<T> {
             noResultado = this.raiz;
         }
 
-        if (this.type == 0 || this.type == 1) {
+        if (this.type < 2) {
             int maxCount = no.getFilhos().size();
             if (maxCount > 0) {
                 for (int i = 0; i < maxCount; i++) {
@@ -95,7 +95,7 @@ public class ArvoreGenerica<T> {
 
     public void inserirNode(T no, T novoValor) { // no que quer adicionar o filho / valor que quer adicionar
         GenericNode<T> noPai = buscar(no, this.raiz);
-
+        noPai = setNodeToRoot(noPai);
         if (type == 0 && noPai != null) {
             GenericNode<T> noFilho = new GenericNode<T>(novoValor, noPai);
             noPai.addFilho(noFilho);
@@ -753,6 +753,7 @@ public class ArvoreGenerica<T> {
     // FUNÇÕES PARA ARVORE BINARIA DE BUSCA
     public void convertToSearchBinary(GenericNode<T> no) {
         no = setNodeToRoot(no);
+        convertTrueBinary(no);
         this.type = 3;
         reWrite(no,null);
         System.out.println("convertido para binaria de busca");
@@ -769,7 +770,7 @@ public class ArvoreGenerica<T> {
             folhas.remove(exceptionNode);
             
             GenericNode<T> firstNode = getMaior(exceptionNode, null);
-            System.out.println("aslkdjaslkdj " + firstNode.getValor());
+            // System.out.println("aslkdjaslkdj " + firstNode.getValor());
             internos.remove(firstNode); 
             //adicionar o maior nó como primeiro a ser inserido
             no.setValor(firstNode.getValor());
@@ -830,49 +831,49 @@ public class ArvoreGenerica<T> {
             //utilizando da reinserção
             //filhos do removido
 
-            GenericNode<T> leftFilho = noFilho.getLeft(); //6
+            // GenericNode<T> leftFilho = noFilho.getLeft(); //6
 
-            GenericNode<T> rightFilho = noFilho.getRight(); //9
+            // GenericNode<T> rightFilho = noFilho.getRight(); //9
 
-            GenericNode<T> maiorEsquerdoFilho;
-            if(leftFilho.getGrauBinary() != 0)  {
-                maiorEsquerdoFilho = getMaior(noFilho, "left"); //retornar o maior nó da subarvore esquerda //6
-            } else{
-                maiorEsquerdoFilho = leftFilho;
-            }
+            // GenericNode<T> maiorEsquerdoFilho;
+            // if(leftFilho.getGrauBinary() != 0)  {
+            //     maiorEsquerdoFilho = getMaior(noFilho, "left"); //retornar o maior nó da subarvore esquerda //6
+            // } else{
+            //     maiorEsquerdoFilho = leftFilho;
+            // }
             
-            maiorEsquerdoFilho.setPai(noPai); //definir novo pai do removido
-            maiorEsquerdoFilho.setLeft(null);
-            maiorEsquerdoFilho.setRight(null);
+            // maiorEsquerdoFilho.setPai(noPai); //definir novo pai do removido
+            // maiorEsquerdoFilho.setLeft(null);
+            // maiorEsquerdoFilho.setRight(null);
             
             
-            //filhos do maior esquedo
-            GenericNode<T> leftMaiorEsquerdoFilho = maiorEsquerdoFilho.getLeft(); //reinsrir posteriormente filhos de 6 null
-            GenericNode<T> rightMaiorEsquerdoFilho = maiorEsquerdoFilho.getRight(); //reinsrir posteriormente null
+            // //filhos do maior esquedo
+            // GenericNode<T> leftMaiorEsquerdoFilho = maiorEsquerdoFilho.getLeft(); //reinsrir posteriormente filhos de 6 null
+            // GenericNode<T> rightMaiorEsquerdoFilho = maiorEsquerdoFilho.getRight(); //reinsrir posteriormente null
 
 
-            if(noPai.hasLeft()){ //adicionar nova subarvore no local removido
-                if(noPai.getLeft().getValor() == noFilho.getValor()) noPai.setLeft(maiorEsquerdoFilho);
-            }
-            if(noPai.hasRight()){
-                if(noPai.getRight().getValor() == noFilho.getValor()) noPai.setRight(maiorEsquerdoFilho);
-            }
+            // if(noPai.hasLeft()){ //adicionar nova subarvore no local removido
+            //     if(noPai.getLeft().getValor() == noFilho.getValor()) noPai.setLeft(maiorEsquerdoFilho);
+            // }
+            // if(noPai.hasRight()){
+            //     if(noPai.getRight().getValor() == noFilho.getValor()) noPai.setRight(maiorEsquerdoFilho);
+            // }
             
-            //reinserir nós do antigo removido
-            if(maiorEsquerdoFilho != leftFilho){
-                maiorEsquerdoFilho.setLeft(leftFilho);
-                if( maiorEsquerdoFilho.getLeft() != null){
-                    maiorEsquerdoFilho.getLeft().setPai(maiorEsquerdoFilho);
-                }   
+            // //reinserir nós do antigo removido
+            // if(maiorEsquerdoFilho != leftFilho){
+            //     maiorEsquerdoFilho.setLeft(leftFilho);
+            //     if( maiorEsquerdoFilho.getLeft() != null){
+            //         maiorEsquerdoFilho.getLeft().setPai(maiorEsquerdoFilho);
+            //     }   
                 
-            }
-            maiorEsquerdoFilho.setRight(rightFilho);
-            if(maiorEsquerdoFilho.getRight() !=null){
-                maiorEsquerdoFilho.getRight().setPai(maiorEsquerdoFilho);
-            }
+            // }
+            // maiorEsquerdoFilho.setRight(rightFilho);
+            // if(maiorEsquerdoFilho.getRight() !=null){
+            //     maiorEsquerdoFilho.getRight().setPai(maiorEsquerdoFilho);
+            // }
             
 
-            noFilho.setPai(null);
+            // noFilho.setPai(null);
             // leftFilho.setPai(maiorEsquerdoFilho);
             // rightFilho.setPai(maiorEsquerdoFilho);
 
@@ -880,11 +881,11 @@ public class ArvoreGenerica<T> {
             // inserirBB(noPai,rightFilho);
 
             //inserir antigos filhos do maior
-            if(leftMaiorEsquerdoFilho != leftFilho){
-                inserirBB(noPai, leftMaiorEsquerdoFilho);
-            }
+            // if(leftMaiorEsquerdoFilho != leftFilho){
+            //     inserirBB(noPai, leftMaiorEsquerdoFilho);
+            // }
             
-            inserirBB(noPai, rightMaiorEsquerdoFilho);
+            // inserirBB(noPai, rightMaiorEsquerdoFilho);
 
             //reinserir os antigos nós d
             //settar filhos antigos no maior 
