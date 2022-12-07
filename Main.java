@@ -208,12 +208,12 @@ arvore3.inserirNode(65, 75);
 System.out.println("show arvore\n" + arvore3.getRaiz().getValor());
 arvore3.showTree(null);
 
-// arvore3.convertTrueBinary(null);
+arvore3.convertTrueBinary(null);
 
-// System.out.println("show arvore\n" + arvore3.getRaiz().getValor());
-// arvore3.showTree(null);
+System.out.println("show arvore\n" + arvore3.getRaiz().getValor());
+arvore3.showTree(null);
 
-// arvore3.convertToSearchBinary(null);
+arvore3.convertToSearchBinary(null);
 
 // arvore3.showNodeInfo(30);
 
@@ -222,18 +222,18 @@ arvore3.showTree(null);
 
 // arvore3.showSubarvores(null);
 
-// arvore3.removeBinary(28);
+arvore3.removeBinary(30);
 
-// arvore3.clearTree(null);
+arvore3.clearTree(null);
 
-// arvore3.inserirBB(30);
-// arvore3.inserirBB(65);
-// arvore3.inserirBB(25);
-// arvore3.inserirBB(35);
-// arvore3.inserirBB(75);
-// arvore3.inserirBB(28);
-// arvore3.inserirBB(38);
-// arvore3.inserirBB(26);
+arvore3.inserirBB(30);
+arvore3.inserirBB(65);
+arvore3.inserirBB(25);
+arvore3.inserirBB(35);
+arvore3.inserirBB(75);
+arvore3.inserirBB(28);
+arvore3.inserirBB(38);
+arvore3.inserirBB(26);
 System.out.println("show arvore\n" + arvore3.getRaiz().getValor());
 arvore3.showTree(null);
 
