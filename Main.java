@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 
 import arvoreGenerica.ArvoreGenerica;
 import arvoreGenerica.GenericNode;
+import arvoreGenerica.ArvoreRedBlack;
 
 class Main {
   public static void main(String[] args) {
@@ -236,6 +237,31 @@ arvore3.inserirBB(38);
 arvore3.inserirBB(26);
 System.out.println("show arvore\n" + arvore3.getRaiz().getValor());
 arvore3.showTree(null);
+
+System.out.println("\u001B[41m"+ " 10 "+ "\u001B[0m");
+ArvoreRedBlack<Integer> RB = new ArvoreRedBlack();
+RB.insertNode(41);
+RB.insertNode(38);
+RB.insertNode(31);
+RB.insertNode(12);
+RB.insertNode(19);
+RB.insertNode(8);
+
+// RB.insertNode(40);
+// RB.insertNode(30);
+// RB.insertNode(50);
+// RB.insertNode(45);
+// RB.insertNode(55);
+// RB.insertNode(52);
+
+RB.showRBTree(null);
+
+System.out.println();
+// System.out.println(RB.searchNode(2).getRight().getValor());
+
+
+
+
 
     //INICIO MAIN
     Scanner s = new Scanner(System.in);
