@@ -2,14 +2,14 @@ package arvoreGenerica;
 import java.util.ArrayList;
 
 public class GenericNode<T> {
-    private int profundidade;
-    private T valor;
-    private GenericNode<T> pai;
-    private GenericNode<T> left;
-    private GenericNode<T> right;
-    private int i;
-    private ArrayList<GenericNode<T>> filhos;
-
+    protected int profundidade;
+    protected T valor;
+    protected GenericNode<T> pai;
+    protected GenericNode<T> left;
+    protected GenericNode<T> right;
+    protected int i;
+    protected ArrayList<GenericNode<T>> filhos;
+    protected boolean color; 
 
     //declarar raiz
     public GenericNode(T valor) { 
