@@ -238,236 +238,64 @@ arvore3.inserirBB(26);
 System.out.println("show arvore\n" + arvore3.getRaiz().getValor());
 arvore3.showTree(null);
 
-System.out.println("\u001B[41m"+ " 10 "+ "\u001B[0m");
-ArvoreRedBlack<Integer> RB = new ArvoreRedBlack();
-RB.insertNode(41);
-RB.insertNode(38);
-RB.insertNode(31);
-RB.insertNode(12);
-RB.insertNode(19);
-RB.insertNode(8);
-
+// System.out.println("\u001B[41m"+ " 10 "+ "\u001B[0m");
+System.out.println("\n\n\nÁrvore RED BLACK\n");
 // RB.insertNode(40);
 // RB.insertNode(30);
 // RB.insertNode(50);
 // RB.insertNode(45);
 // RB.insertNode(55);
 // RB.insertNode(52);
+ArvoreRedBlack<Integer> RB = new ArvoreRedBlack();
 
+// RB.insertNode(41);
+// RB.insertNode(38);
+
+//rotação simples direita
+// RB.insertNode(31);
+
+// RB.insertNode(12);
+
+//rotação dupla esquerda
+// RB.insertNode(19);
+
+// RB.insertNode(8);
+
+//rotação direita
+// RB.insertNode(6);
+
+//rotação direita na raiz
+// RB.insertNode(5);
+
+
+//remoções
+// RB.deleteNode(8); //1 time
+
+// RB.deleteNode(5);
+// RB.deleteNode(6);
+
+
+
+System.out.println("Red Black");
 RB.showRBTree(null);
 
-System.out.println();
-// System.out.println(RB.searchNode(2).getRight().getValor());
 
+//funções antigas
+  // System.out.println("\nFunções antigas");
+  // RB.showTree(RB.getRoot());
+  // RB.showInternos(RB.getRoot());
+  // RB.showFolhas(RB.getRoot());
+  // System.out.println("Altura da árvore: " + RB.getAlturaThree(RB.getRoot()));
+  
+  // //alturas
+  // RB.showAlturas(RB.getRoot());
+  // RB.showGraus(RB.getRoot());
 
+  // //internos e folhas
+  // RB.showSubarvores(RB.getRoot());
 
+  // RB.showNodeInfo(RB.getRoot());
 
-
-    //INICIO MAIN
-    Scanner s = new Scanner(System.in);
-    int value;
-
-    System.out.print("Insira o valor da raiz: ");
-    value = s.nextInt();
-    ArvoreGenerica<Integer> a = new ArvoreGenerica<Integer>(value);
-    System.out.println(value);
-    System.out.println("Gravar nós na árvore (inserir -1 pra parar)");
-    int v1;
-    int v2;
-    while (true) {
-      System.out.println("Árvore");
-      System.out.println(a.getRaiz().getValor());
-      a.showTree(null);
-      System.out.println("");
-
-      System.out.print("Nó que deseja inserir o filho (-1 para concluir): ");
-      v1 = s.nextInt();
-      if (v1 == -1) {
-        break;
-      }
-
-      System.out.print("Valor do novo nó (-1 para concluir): ");
-      v2 = s.nextInt();
-      if (v2 == -1) {
-        break;
-      }
-      System.out.println("");
-      a.inserirNode(v1, v2);
-      System.out.println("");
-      System.out.println(a.getRaiz().getValor());
-      a.showTree(null);
-      System.out.println("");
-    }
-    int option;
-    while (true) {
-      v1 = 0;
-      v2 = 0;
-
-      System.out.println("OPÇÕES:\n --Funções de árvore-- \n");
-      System.out.println("-1 = parar");
-      System.out.println("0 = Imprimir arvore ");
-      System.out.println("1 = Inserir nó");
-      System.out.println("2 = Nós folhas");
-      System.out.println("3 = Nós internos");
-      System.out.println("4 = Maior Grau da arvore");
-      System.out.println("5 = Altura");
-      System.out.println("6 = Profundidade");
-      System.out.println("7 = Exibir informações de um nó");
-      System.out.println("8 = Exibir altura dos nós");
-      System.out.println("9 = Exibir profundidade dos nós");
-      System.out.println("10 = Exibir sub-árvores");
-      System.out.println("11 = Excluir um nó");
-      System.out.println("12 = Converter árvore para BINÁRIA");
-
-      System.out.println("13 = Exibir altura dos nós");
-
-      System.out.print("Insira a opção: ");
-      option = s.nextInt();
-
-      // System.out.println("Valor da raiz "+ a.getRaiz().getValor() );
-      System.out.println("");
-      switch (option) {
-        case 0:
-
-          System.out.print("Insira o nó: ");
-          v1 = s.nextInt();
-
-          System.out.println(a.buscar(v1, a.getRaiz()).getValor());
-          a.showTree(a.buscar(v1, a.getRaiz()));
-          System.out.println("");
-
-          break;
-
-        case 1:
-          if (a.getType() != 1) {
-            System.out.print("Nó que deseja inserir o filho: ");
-            v1 = s.nextInt();
-
-            System.out.print("Valor do novo nó: ");
-            v2 = s.nextInt();
-
-            a.inserirNode(v1, v2);
-
-            System.out.println("");
-          } else {
-            System.out.print("Insira o nó (-1 cancelar): ");
-            v1 = s.nextInt();
-            System.out.print("Valor do nó esquerdo (-1 cancelar): ");
-            v2 = s.nextInt();
-            if (v1 != -1) {
-              a.addLeft(v1, v2);
-            }
-            System.out.print("Valor do nó direito (-1 cancelar): ");
-            v2 = s.nextInt();
-            if (v2 != -1) {
-              a.addRight(v1, v2);
-            }
-          }
-          break;
-
-        case 2:
-          System.out.print("Insira o nó: ");
-          v1 = s.nextInt();
-          a.showFolhas(a.buscar(v1, a.getRaiz()));
-          System.out.println("");
-          break;
-
-        case 3:
-          System.out.print("Insira o nó: ");
-          v1 = s.nextInt();
-          a.showInternos(a.buscar(v1, a.getRaiz()));
-
-          System.out.println("");
-          break;
-
-        case 4:
-          System.out.print("Insira o nó: ");
-          v1 = s.nextInt();
-
-          System.out.println("Maior grau de (sub)arvore " + a.buscar(v1, a.getRaiz()).getValor() + ": "
-              + a.getMaxNodeGrau(a.buscar(v1, a.getRaiz())));
-          System.out.println("");
-          break;
-
-        case 5:
-          System.out.print("Insira o nó: ");
-          v1 = s.nextInt();
-
-          System.out.println(
-              "Altura de " + a.buscar(v1, a.getRaiz()).getValor() + ": " + a.getAlturaNode(a.buscar(v1, a.getRaiz())));
-          System.out.println("");
-          break;
-
-        case 6:
-          System.out.print("Insira o nó: ");
-          v1 = s.nextInt();
-          System.out.println("Profundidade de " + a.buscar(v1, a.getRaiz()).getValor() + ": "
-              + a.getAlturaNode(a.buscar(v1, a.getRaiz())));
-          System.out.println("");
-          break;
-
-        case 7:
-          System.out.print("Insira o nó: ");
-          v1 = s.nextInt();
-          a.showNodeInfo(v1);
-          System.out.println("");
-
-          break;
-
-        case 8:
-          System.out.print("Insira o nó: ");
-          v1 = s.nextInt();
-          System.out.println("Altura dos nós:");
-          System.out.println(a.getAlturaNode(a.buscar(v1, a.getRaiz())));
-          a.showAlturas(a.buscar(v1, a.getRaiz()));
-
-          System.out.println("");
-          break;
-
-        case 9:
-          System.out.print("Insira o nó: ");
-          v1 = s.nextInt();
-          System.out.println("Profundidade dos nós:");
-          System.out.println(a.getProfundidadeFromNode(a.getRaiz(), a.buscar(v1, a.getRaiz())));
-          a.showProfundidades(a.buscar(v1, a.getRaiz()));
-
-          System.out.println("");
-
-          break;
-
-        case 10:
-          System.out.print("Insira o nó: ");
-          v1 = s.nextInt();
-          a.showSubarvores(a.buscar(v1, a.getRaiz()));
-          break;
-
-        case 11:
-            System.out.print("Insira o nó que deseja remover: ");
-            v1 = s.nextInt();
-            a.removeNode(v1);
-          
-          break;
-
-        case 12:
-          System.out.print("Insira a (sub)árvore que deseja converter: ");
-          v1 = s.nextInt();
-          a.convertToBinary(a.buscar(v1, a.getRaiz()));
-          a.setType(1);
-          break;
-
-          case 13:
-          System.out.print("Insira o nó: ");
-          v1 = s.nextInt();
-          System.out.println("Grau dos nós:");
-          System.out.println(a.buscar(v1, a.getRaiz()).getGrau());
-          a.showGraus(a.buscar(v1, a.getRaiz()));
-
-          System.out.println("");
-          break;
-
-      }
-    }
-
+  
   }
-
 }
