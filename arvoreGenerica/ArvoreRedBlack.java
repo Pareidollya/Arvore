@@ -7,37 +7,21 @@ public class ArvoreRedBlack<T extends Comparable<T>> extends ArvoreGenerica{
     static final boolean RED = false;
     static final boolean BLACK = true;
 
+    public ArvoreRedBlack(){
+      super();
+      this.setType(3);
+    }
 
     public GenericNode<T> getRoot() {
         return root;
       }
-    
-    // public static void printLeafNodesIteratively(GenericNode<T> root) { 
-    //     if (root == null) { 
-    //       return; 
-    //     } 
-    //     Stack<GenericNode<T>> stack = new Stack<>(); 
-    //     stack.push(root); 
-    //     while (!stack.isEmpty()) { 
-    //       GenericNode<T> node = stack.pop(); 
-    //       if (node.right != null) { 
-    //         stack.add(node.right); 
-    //       } 
-    //       if (node.left != null) { 
-    //         stack.add(node.left); 
-    //       } 
-    //       if (node.left == null && node.right == null) { 
-    //         System.out.printf("%d ", node.value); 
-    //       }
-    //   } 
-    // } 
-    
+
     public void showRBTree(GenericNode<T> no) { // caso passar um no exibir a sub arvore (igual a busca)
             if(no == null){
               no = root;
           }
           if( no == root){
-            System.out.println(no.color == BLACK ? "\u001B[30m"+ no.getValor() + "\u001B[0m" : "\u001B[31m"+ no.getValor() + "\u001B[0m");
+            System.out.println("\u001B[30m"+" " + no.getValor() + "\u001B[0m");
           }
           if (no.hasLeft()) {
               System.out.print("  ");
@@ -85,7 +69,7 @@ public class ArvoreRedBlack<T extends Comparable<T>> extends ArvoreGenerica{
         } else if ((int) key > (int) node.valor) {
           node = node.right;
         } else {
-          throw new IllegalArgumentException("BST already contains a node with key " + key);
+          throw new IllegalArgumentException("Nó "+ key +" ja existe" + key);
         }
       }
 
@@ -154,7 +138,7 @@ public class ArvoreRedBlack<T extends Comparable<T>> extends ArvoreGenerica{
       } else if (grandparent.right == parent) {
         return grandparent.left;
       } else {
-        throw new IllegalStateException("Parent is not a child of its grandparent");
+        throw new IllegalStateException("erro parentesco");
       }
     }
   
@@ -223,7 +207,6 @@ public class ArvoreRedBlack<T extends Comparable<T>> extends ArvoreGenerica{
       return node;
     }
   
-    @SuppressWarnings("squid:S125") 
     private void fixRedBlackPropertiesAfterDelete(GenericNode<T> node) {
 
       if (node == root) {
@@ -295,7 +278,7 @@ public class ArvoreRedBlack<T extends Comparable<T>> extends ArvoreGenerica{
       } else if (node == parent.right) {
         return parent.left;
       } else {
-        throw new IllegalStateException("Parent is not a child of its grandparent");
+        throw new IllegalStateException("erro parentesco");
       }
     }
   
@@ -348,7 +331,7 @@ public class ArvoreRedBlack<T extends Comparable<T>> extends ArvoreGenerica{
       } else if (parent.right == oldChild) {
         parent.right = newChild;
       } else {
-        throw new IllegalStateException("Node is not a child of its parent");
+        throw new IllegalStateException("Não é filho do parente inserido");
       }
   
       if (newChild != null) {
