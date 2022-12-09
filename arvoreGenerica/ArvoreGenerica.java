@@ -33,7 +33,7 @@ public class ArvoreGenerica<T> {
     }
 
     public boolean isRoot(GenericNode<T> no) {
-        if (no == this.raiz) {
+        if (no == this.raiz || no.pai == null) {
             return true;
         } else {
             return false;
@@ -149,6 +149,9 @@ public class ArvoreGenerica<T> {
                 }
             }
         } else {
+            if(isRoot(no)){
+                System.out.println("\nShow Tree\n " + no.getValor());
+              }
             if (no.hasLeft()) {
                 System.out.print("  ");
                 for (int j = 0; j < this.getProfundidade(null, no); j++) {
@@ -201,6 +204,9 @@ public class ArvoreGenerica<T> {
                 }
             }
         } else {
+            if(isRoot(no)){
+                System.out.println("\nAlturas\n  " + getAlturaNode(no));
+              }
             if (no.hasLeft()) {
                 System.out.print("  ");
                 for (int j = 0; j < this.getProfundidade(null, no); j++) {
@@ -241,6 +247,9 @@ public class ArvoreGenerica<T> {
                 }
             }
         } else {
+            if(isRoot(no)) {
+                System.out.println("\nProfundidades\n  " + getProfundidade(no, no) + 1);
+            }
             if (no.hasLeft()) {
                 System.out.print("  ");
                 for (int j = 0; j < this.getProfundidade(null, no); j++) {
@@ -280,6 +289,9 @@ public class ArvoreGenerica<T> {
                 }
             }
         } else {
+            if(isRoot(no)) {
+                System.out.println("\nGraus\n  " + no.getGrauBinary());
+            }
             if (no.hasLeft()) {
                 System.out.print("  ");
                 for (int j = 0; j < this.getProfundidade(null, no); j++) {
@@ -430,6 +442,17 @@ public class ArvoreGenerica<T> {
         }
         return altura_arvore;
     }
+    public int getAlturaThree(GenericNode<T> no) { // pegar altura atravez das folhas
+        int altura_arvore = 0;
+        ArrayList<GenericNode<T>> folhasList = getFolhas(no);
+        System.out.println(folhasList);
+        for (int i = 0; i < folhasList.size(); i++) {
+            if (folhasList.get(i).getProfundidade() > altura_arvore) {
+                altura_arvore = folhasList.get(i).getProfundidade();
+            }
+        }
+        return altura_arvore;
+    }
 
     public int getProfundidade(GenericNode<T> Arvore, GenericNode<T> no) {
         if (Arvore == null) {
@@ -550,7 +573,7 @@ public class ArvoreGenerica<T> {
     }
 
     public void showNodeType(GenericNode<T> node) {
-        if (node == this.raiz) {
+        if (isRoot(node)) {
             System.out.println("Tipo: Nó Raiz");
         } else if (node.getGrau() > 0 || node.getGrauBinary() > 0) {
             System.out.println("Tipo: Nó Interno");
@@ -573,6 +596,16 @@ public class ArvoreGenerica<T> {
 
     public void showNodeInfo(T valor) { // imprimir informações de um nó de valor x
         GenericNode<T> node = buscar(valor, null);
+        System.out.println("------ \nINFORMAÇÕES DO NÓ:\n");
+        System.out.println("Valor: " + node.getValor());
+        showNodeType(node);
+        showNodeParentescos(node);
+        showFilhos(node);
+        showInternos(node);
+        showFolhas(node);
+        System.out.print("\n------\n");
+    }
+    public void showNodeInfo(GenericNode<T> node) { // imprimir informações de um nó de valor x
         System.out.println("------ \nINFORMAÇÕES DO NÓ:\n");
         System.out.println("Valor: " + node.getValor());
         showNodeType(node);
